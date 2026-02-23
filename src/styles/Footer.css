@@ -1,0 +1,52 @@
+.footer-container {
+  margin: auto;
+  padding: 20px 40px;
+  background-color: #c75d2c;
+  color: #f3e9dc;
+  text-align: center;
+  width: 100%;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.social-icons {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  gap: 12px;
+}
+
+.social-icons .MuiIconButton-root {
+  color: #f3e9dc;
+}
+
+.social-icons .MuiIconButton-root:hover {
+  transform: scale(1.2);
+  background-color: transparent;
+}
+
+.copyright-text {
+  margin-top: 5px;
+  font-family: sans-serif;
+  opacity: 0.9;
+}
+
+@media (max-width: 768px) {
+  .footer-container {
+    padding: 20px 15px;
+    gap: 15px;
+    flex-direction: column;
+  }
+
+  .social-icons .MuiIconButton-root {
+    padding: 12px;
+  }
+
+  .copyright-text {
+    font-size: 0.85rem;
+  }
+}
