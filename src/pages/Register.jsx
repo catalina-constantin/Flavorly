@@ -46,10 +46,20 @@ const Register = () => {
         formData.password,
         formData.fullName,
       );
+
+      if (
+        data.user &&
+        data.user.identities &&
+        data.user.identities.length === 0
+      ) {
+        throw new Error("Email already registered.");
+      }
+
       if (data.user) {
         dispatch(setUser({ user: data.user, role: "visitor" }));
+        dispatch(setPendingEmail(formData.email));
       }
-      dispatch(setPendingEmail({ email: formData.email }));
+
       toast.success(
         "Registration successful! Please check your email to verify your account.",
         {
@@ -61,10 +71,18 @@ const Register = () => {
       resetForm();
       navigate("/verify-email");
     } catch (err) {
-      toast.error(err.message || "An error occurred.", {
-        style: { border: "1px solid #C75D2C", padding: "16px" },
-        iconTheme: { primary: "#C75D2C", secondary: "#FFFAEE" },
-      });
+      if (err.message.includes("already registered") || err.status === 422) {
+        toast.error("This email is already registered. Please log in.", {
+          style: { border: "1px solid #C75D2C", padding: "16px" },
+          iconTheme: { primary: "#C75D2C", secondary: "#FFFAEE" },
+        });
+        navigate("/login");
+      } else {
+        toast.error(err.message || "An error occurred.", {
+          style: { border: "1px solid #C75D2C", padding: "16px" },
+          iconTheme: { primary: "#C75D2C", secondary: "#FFFAEE" },
+        });
+      }
     } finally {
       setLoading(false);
     }
