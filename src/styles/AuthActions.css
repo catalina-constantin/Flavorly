@@ -43,19 +43,23 @@
 }
 
 .btn-logout {
-  background: none;
-  border: 1px solid #c75d2c;
-  color: #c75d2c;
-  padding: 0.4rem 1rem;
-  border-radius: 8px;
+  background-color: #c75d2c;
+  color: white;
+  padding: 0.6rem 1.5rem;
+  border-radius: 12px;
+  border: none;
   cursor: pointer;
   font-weight: 600;
+  font-size: 0.9rem;
   white-space: nowrap;
-  transition: all 0.2s ease;
+  box-shadow: 0 4px 12px rgba(199, 93, 44, 0.15);
+  transition: all 0.3s ease;
 }
 
 .btn-logout:hover {
-  background-color: rgba(199, 93, 44, 0.05);
+  background-color: #d96f32;
+  box-shadow: 0 6px 15px rgba(199, 93, 44, 0.3);
+  transform: translateY(-1px);
 }
 
 .user-email {
@@ -90,6 +94,12 @@
   }
 
   .btn-register {
+    width: 100%;
+    text-align: center;
+    padding: 0.8rem;
+  }
+
+  .btn-logout {
     width: 100%;
     text-align: center;
     padding: 0.8rem;
