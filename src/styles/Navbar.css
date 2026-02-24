@@ -63,39 +63,6 @@
   width: 100%;
 }
 
-.nav-actions {
-  display: flex;
-  align-items: center;
-  gap: 1.5rem;
-}
-
-.auth-buttons,
-.user-section {
-  display: flex;
-  align-items: center;
-  gap: 1.25rem;
-}
-
-.btn-login {
-  color: #4b5563;
-  text-decoration: none;
-  font-weight: 600;
-  font-size: 0.95rem;
-  transition: color 0.2s ease;
-}
-
-.btn-register {
-  background-color: #c75d2c;
-  color: white;
-  padding: 0.6rem 1.5rem;
-  border-radius: 12px;
-  text-decoration: none;
-  font-weight: 600;
-  font-size: 0.9rem;
-  white-space: nowrap;
-  box-shadow: 0 4px 12px rgba(199, 93, 44, 0.15);
-}
-
 .hamburger {
   display: none;
   cursor: pointer;
@@ -173,32 +140,5 @@
     font-size: 1.1rem;
     display: block;
     width: 100%;
-  }
-
-  .nav-actions {
-    margin-top: auto;
-    padding-top: 2rem;
-    border-top: 1px solid #f3e9dc;
-    width: 100%;
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .auth-buttons,
-  .user-section {
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
-    gap: 1.5rem;
-  }
-
-  .btn-login {
-    align-self: center;
-  }
-
-  .btn-register {
-    width: 100%;
-    text-align: center;
-    padding: 0.8rem;
   }
 }

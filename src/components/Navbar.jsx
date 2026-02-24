@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { Link, NavLink, useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { logout } from "../store/authSlice";
 import Logo from "./Logo";
+import AuthActions from "./AuthActions";
 import "../styles/Navbar.css";
 
 function Navbar() {
@@ -13,11 +14,7 @@ function Navbar() {
   const { isAuthenticated, user } = useSelector((state) => state.auth);
 
   useEffect(() => {
-    if (isOpen) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "unset";
-    }
+    document.body.style.overflow = isOpen ? "hidden" : "unset";
   }, [isOpen]);
 
   const toggleMenu = () => setIsOpen(!isOpen);
@@ -87,27 +84,12 @@ function Navbar() {
           </ul>
 
           <div className="nav-actions">
-            {isAuthenticated ? (
-              <div className="user-section">
-                <span className="user-email">{user?.email}</span>
-                <button onClick={handleLogout} className="btn-logout">
-                  Log Out
-                </button>
-              </div>
-            ) : (
-              <div className="auth-buttons">
-                <Link to="/login" className="btn-login" onClick={closeMenu}>
-                  Login
-                </Link>
-                <Link
-                  to="/register"
-                  className="btn-register"
-                  onClick={closeMenu}
-                >
-                  Register
-                </Link>
-              </div>
-            )}
+            <AuthActions
+              isAuthenticated={isAuthenticated}
+              user={user}
+              handleLogout={handleLogout}
+              closeMenu={closeMenu}
+            />
           </div>
         </div>
       </nav>
