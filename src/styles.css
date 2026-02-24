@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Fraunces:wght@600;800&family=Space+Grotesk:wght@400;500;600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Fraunces:wght@600;800&family=Space+Grotesk:wght@400;500;600&family=Playfair+Display:wght@700&display=swap");
 
 * {
   margin: 0;
@@ -15,6 +15,7 @@ body {
 html {
   background-color: #f3e9dc;
   overscroll-behavior: none;
+  font-family: sans-serif;
 }
 
 #root {
@@ -34,4 +35,6 @@ html {
   width: 100%;
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }

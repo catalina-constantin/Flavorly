@@ -2,9 +2,11 @@ import { StrictMode, useEffect } from "react";
 import { createRoot } from "react-dom/client";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Provider, useDispatch } from "react-redux";
-import { store } from "./store/store";
+import { PersistGate } from "redux-persist/integration/react";
+import { store, persistor } from "./store/store";
 import { supabase } from "./supabaseClient";
 import { setUser } from "./store/authSlice";
+import { Toaster } from "react-hot-toast";
 
 import "./styles.css";
 import Home from "./pages/Home";
@@ -12,11 +14,12 @@ import Contact from "./pages/Contact";
 import NotFound from "./pages/NotFound";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
-import AddRecipe from "./pages/AddRecipe";
+import VerifyEmail from "./pages/VerifyEmail";
+import Recipes from "./pages/Recipes";
+import RecipeDetails from "./pages/RecipeDetails";
 import Layout from "./components/Layout";
-import ProtectedRoute from "./components/ProtectedRoute";
 
-function App() {
+export default function App() {
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -56,29 +59,32 @@ function App() {
   }, [dispatch]);
 
   return (
-    <Routes>
-      <Route element={<Layout />}>
-        <Route path="/" element={<Home />} />
-        <Route path="/recipes" element={<Recipes />} />
-        <Route path="/recipes/:id" element={<RecipeDetails />} />
-        <Route path="/contact" element={<Contact />} />
-        <Route element={<ProtectedRoute adminOnly={true} />}>
-          <Route path="/add-recipe" element={<AddRecipe />} />
+    <>
+      <Toaster />
+      <Routes>
+        <Route element={<Layout />}>
+          <Route path="/" element={<Home />} />
+          <Route path="/recipes" element={<Recipes />} />
+          <Route path="/recipes/:id" element={<RecipeDetails />} />
+          <Route path="/contact" element={<Contact />} />
         </Route>
-      </Route>
-      <Route path="/login" element={<Login />} />
-      <Route path="/register" element={<Register />} />
-      <Route path="*" element={<NotFound />} />
-    </Routes>
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/verify-email" element={<VerifyEmail />} />
+        <Route path="*" element={<NotFound />} />
+      </Routes>
+    </>
   );
 }
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <Provider store={store}>
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
+      <PersistGate loading={null} persistor={persistor}>
+        <BrowserRouter>
+          <App />
+        </BrowserRouter>
+      </PersistGate>
     </Provider>
   </StrictMode>,
 );
