@@ -24,8 +24,14 @@ const authSlice = createSlice({
       state.isAuthenticated = false;
       state.emailVerified = false;
     },
+    clearAuthTempData: (state) => {
+      state.user = null;
+      state.role = null;
+      state.isAuthenticated = false;
+      state.emailVerified = false;
+    },
   },
 });
 
-export const { setUser, logout } = authSlice.actions;
+export const { setUser, logout, clearAuthTempData } = authSlice.actions;
 export default authSlice.reducer;

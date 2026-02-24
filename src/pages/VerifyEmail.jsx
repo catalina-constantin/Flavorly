@@ -1,10 +1,20 @@
 import React from "react";
 import { Button } from "@mui/material";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { clearAuthTempData } from "../store/authSlice";
 import { useVerifyEmail } from "../hooks/useVerifyEmail";
 import "../styles/VerifyEmail.css";
 
 const VerifyEmail = () => {
   const { loading, user, handleResend } = useVerifyEmail();
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const handleCancel = () => {
+    dispatch(clearAuthTempData());
+    navigate("/register");
+  };
 
   return (
     <div className="verify-email-container">
@@ -33,16 +43,28 @@ const VerifyEmail = () => {
           </Button>
         </div>
 
-        <p className="verify-email-footer">
-          Already verified?{" "}
-          <button
-            className="refresh-link"
-            onClick={() => window.location.reload()}
-            disabled={loading}
-          >
-            Refresh
-          </button>
-        </p>
+        <div className="verify-email-footer-group">
+          <p className="verify-email-footer">
+            Already verified?{" "}
+            <button
+              className="refresh-link"
+              onClick={() => window.location.reload()}
+              disabled={loading}
+            >
+              Refresh
+            </button>
+          </p>
+          <p className="verify-email-footer">
+            Wrong email?{" "}
+            <button
+              className="refresh-link"
+              onClick={handleCancel}
+              disabled={loading}
+            >
+              Change email
+            </button>
+          </p>
+        </div>
       </div>
     </div>
   );
