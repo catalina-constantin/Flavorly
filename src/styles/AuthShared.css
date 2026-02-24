@@ -89,3 +89,9 @@
   color: #141414;
   background: #ffffff;
 }
+
+@media (max-width: 600px) {
+  .auth-form {
+    gap: 3px;
+  }
+}
