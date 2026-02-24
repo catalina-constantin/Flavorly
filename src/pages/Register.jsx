@@ -8,7 +8,7 @@ import { validateRegisterForm } from "../utils/registerValidation";
 import { useRegisterForm } from "../hooks/useRegisterForm";
 
 import { useDispatch } from "react-redux";
-import { setUser } from "../store/authSlice";
+import { setPendingEmail, setUser } from "../store/authSlice";
 
 import FormInput from "../components/FormInput";
 import FormCheckbox from "../components/FormCheckbox";
@@ -49,6 +49,7 @@ const Register = () => {
       if (data.user) {
         dispatch(setUser({ user: data.user, role: "visitor" }));
       }
+      dispatch(setPendingEmail({ email: formData.email }));
       toast.success(
         "Registration successful! Please check your email to verify your account.",
         {

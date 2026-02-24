@@ -14,7 +14,9 @@ export const useVerifyEmail = () => {
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { user, isAuthenticated } = useSelector((state) => state.auth);
+  const { user, isAuthenticated, pendingEmail } = useSelector(
+    (state) => state.auth,
+  );
 
   const handleVerify = useCallback(
     async (token) => {
@@ -55,10 +57,11 @@ export const useVerifyEmail = () => {
   }, [isAuthenticated, navigate, searchParams, handleVerify]);
 
   const handleResend = async () => {
-    if (!user?.email) return;
+    const email = user?.email || pendingEmail;
+    if (!email) return;
     setLoading(true);
     try {
-      await resendVerificationEmail(user.email);
+      await resendVerificationEmail(email);
       toast.success("Verification email sent!");
     } catch (err) {
       toast.error(err.message || "Failed to resend email.");
@@ -67,5 +70,5 @@ export const useVerifyEmail = () => {
     }
   };
 
-  return { loading, user, handleResend };
+  return { loading, user, pendingEmail, handleResend };
 };

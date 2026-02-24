@@ -7,7 +7,7 @@ import { useVerifyEmail } from "../hooks/useVerifyEmail";
 import "../styles/VerifyEmail.css";
 
 const VerifyEmail = () => {
-  const { loading, user, handleResend } = useVerifyEmail();
+  const { loading, user, pendingEmail, handleResend } = useVerifyEmail();
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -23,7 +23,7 @@ const VerifyEmail = () => {
 
         <p className="verify-email-description">
           We've sent a verification link to <br />
-          <strong>{user?.email || "your email address"}</strong>
+          <strong>{user?.email || pendingEmail || "your email address"}</strong>
         </p>
 
         <p className="verify-email-instructions">
@@ -36,7 +36,7 @@ const VerifyEmail = () => {
             fullWidth
             size="large"
             onClick={handleResend}
-            disabled={loading || !user?.email}
+            disabled={loading || !(user?.email || pendingEmail)}
             className="resend-button"
           >
             {loading ? "Sending..." : "Resend Verification Email"}
