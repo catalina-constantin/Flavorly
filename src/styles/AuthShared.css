@@ -1,0 +1,97 @@
+.auth-container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f3e9dc;
+  padding: 32px 16px;
+}
+
+.auth-paper {
+  width: 100%;
+  max-width: 450px;
+  background-color: #ffffff;
+  border-radius: 24px;
+  padding: 48px;
+  text-align: center;
+  box-shadow: 0 30px 80px rgba(199, 93, 44, 0.12);
+}
+
+.auth-title {
+  color: #141414;
+  margin-bottom: 32px;
+  font-weight: 700;
+  font-size: 2rem;
+}
+
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.auth-button {
+  background-color: #c75d2c !important;
+  border-radius: 12px !important;
+  padding: 12px !important;
+  text-transform: none !important;
+  font-weight: 600 !important;
+}
+
+.auth-button:hover {
+  background-color: #d96f32 !important;
+}
+
+.auth-button.Mui-disabled,
+.auth-button.MuiButton-root.Mui-disabled,
+.auth-button.MuiButton-contained.Mui-disabled,
+.auth-button.MuiButton-containedPrimary.Mui-disabled {
+  background-color: #c75d2c !important;
+  color: #ffffff !important;
+  opacity: 0.7;
+}
+
+.auth-footer-text {
+  margin-top: 24px;
+  color: #6b7280;
+  font-size: 0.9rem;
+}
+
+.auth-text-left {
+  text-align: left;
+}
+
+.auth-link {
+  color: #c75d2c;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.auth-link:hover {
+  text-decoration: underline;
+}
+
+.auth-options {
+  width: 100%;
+  text-align: left;
+  margin-top: -8px;
+  margin-bottom: 8px;
+}
+
+.auth-options .auth-footer-text {
+  font-size: 0.85rem;
+  display: inline-block;
+}
+
+.toast-styles {
+  border: 1px solid #c75d2c;
+  padding: 16px;
+  color: #141414;
+  background: #ffffff;
+}
+
+@media (max-width: 600px) {
+  .auth-form {
+    gap: 3px;
+  }
+}
