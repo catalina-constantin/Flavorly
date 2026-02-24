@@ -1,23 +1,16 @@
 import React, { useState } from "react";
 import { Button } from "@mui/material";
-import { Link, useNavigate } from "react-router-dom";
-import toast from "react-hot-toast";
+import { Link } from "react-router-dom";
 
-import { signUp } from "../services/authService";
 import { validateRegisterForm } from "../utils/registerValidation";
 import { useRegisterForm } from "../hooks/useRegisterForm";
-
-import { useDispatch } from "react-redux";
-import { setPendingEmail, setUser } from "../store/authSlice";
+import { useRegister } from "../hooks/useRegister"; // Hook-ul nou
 
 import FormInput from "../components/FormInput";
 import FormCheckbox from "../components/FormCheckbox";
 import "../styles/Register.css";
 
 const Register = () => {
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
-  const [loading, setLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
 
   const { formData, handleChange, errors, setErrors, resetForm } =
@@ -29,70 +22,26 @@ const Register = () => {
       acceptDataProcessing: false,
     });
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const { handleRegister, loading } = useRegister(resetForm);
 
+  const onSubmit = (e) => {
+    e.preventDefault();
     const { isValid, errors: validationErrors } =
       validateRegisterForm(formData);
+
     if (!isValid) {
       setErrors(validationErrors);
       return;
     }
 
-    setLoading(true);
-    try {
-      const data = await signUp(
-        formData.email,
-        formData.password,
-        formData.fullName,
-      );
-
-      if (
-        data.user &&
-        data.user.identities &&
-        data.user.identities.length === 0
-      ) {
-        throw new Error("Email already registered.");
-      }
-
-      if (data.user) {
-        dispatch(setUser({ user: data.user, role: "visitor" }));
-        dispatch(setPendingEmail(formData.email));
-      }
-
-      toast.success(
-        "Registration successful! Please check your email to verify your account.",
-        {
-          style: { border: "1px solid #4C763B", padding: "16px" },
-          iconTheme: { primary: "#4C763B", secondary: "#FFFAEE" },
-        },
-      );
-
-      resetForm();
-      navigate("/verify-email");
-    } catch (err) {
-      if (err.message.includes("already registered") || err.status === 422) {
-        toast.error("This email is already registered. Please log in.", {
-          style: { border: "1px solid #C75D2C", padding: "16px" },
-          iconTheme: { primary: "#C75D2C", secondary: "#FFFAEE" },
-        });
-        navigate("/login");
-      } else {
-        toast.error(err.message || "An error occurred.", {
-          style: { border: "1px solid #C75D2C", padding: "16px" },
-          iconTheme: { primary: "#C75D2C", secondary: "#FFFAEE" },
-        });
-      }
-    } finally {
-      setLoading(false);
-    }
+    handleRegister(formData);
   };
 
   return (
     <div className="register-container">
       <div className="register-paper">
         <h1 className="register-title">Register</h1>
-        <form onSubmit={handleSubmit} className="register-form">
+        <form onSubmit={onSubmit} className="register-form">
           <FormInput
             label="Full name"
             placeholder="John Doe"
