@@ -25,13 +25,12 @@
 }
 
 .social-icons .MuiIconButton-root:hover {
-  transform: scale(1.2);
+  transform: scale(1.1);
   background-color: transparent;
 }
 
 .copyright-text {
   margin-top: 5px;
-  font-family: sans-serif;
   opacity: 0.9;
 }
 
