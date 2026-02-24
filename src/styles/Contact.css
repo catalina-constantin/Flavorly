@@ -1,7 +1,14 @@
+.contact-background {
+  background-color: #f3e9dc;
+  background-image: url("https://www.transparenttextures.com/patterns/black-thread-light.png");
+  background-repeat: repeat;
+  padding: 50px 16px;
+}
+
 .contact-container {
   max-width: 1100px;
   width: 95%;
-  margin: 50px auto;
+  margin: 0 auto;
   padding: 50px;
   background: #ffffff;
   border-radius: 12px;
@@ -178,8 +185,11 @@ textarea:-webkit-autofill:focus {
 }
 
 @media (max-width: 850px) {
+  .contact-background {
+    padding: 30px 16px;
+  }
+
   .contact-container {
-    margin: 20px auto;
     padding: 30px;
   }
 
@@ -212,8 +222,12 @@ textarea:-webkit-autofill:focus {
 }
 
 @media (max-width: 600px) {
+  .contact-background {
+    padding: 0;
+  }
+
   .contact-container {
-    padding: 20px;
+    padding: 40px;
     width: 100%;
     border-radius: 0;
     margin: 0;

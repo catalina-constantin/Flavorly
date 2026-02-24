@@ -1,0 +1,23 @@
+.logo-container {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  gap: 6px;
+}
+
+.logo-img {
+  height: 28px;
+  width: auto;
+  display: block;
+  transition: transform 0.3s ease;
+}
+
+.logo-text {
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: #141414;
+}
+
+.logo-container:hover .logo-img {
+  transform: scale(1.05);
+}
