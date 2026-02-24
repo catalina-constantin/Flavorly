@@ -4,11 +4,11 @@ import { Link } from "react-router-dom";
 
 import { validateRegisterForm } from "../utils/registerValidation";
 import { useRegisterForm } from "../hooks/useRegisterForm";
-import { useRegister } from "../hooks/useRegister"; // Hook-ul nou
+import { useRegister } from "../hooks/useRegister";
 
 import FormInput from "../components/FormInput";
 import FormCheckbox from "../components/FormCheckbox";
-import "../styles/Register.css";
+import "../styles/AuthShared.css";
 
 const Register = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -38,10 +38,10 @@ const Register = () => {
   };
 
   return (
-    <div className="register-container">
-      <div className="register-paper">
-        <h1 className="register-title">Register</h1>
-        <form onSubmit={onSubmit} className="register-form">
+    <div className="auth-container">
+      <div className="auth-paper">
+        <h1 className="auth-title">Register</h1>
+        <form onSubmit={onSubmit} className="auth-form">
           <FormInput
             label="Full name"
             placeholder="John Doe"
@@ -96,14 +96,14 @@ const Register = () => {
             size="large"
             type="submit"
             disabled={loading}
-            className="register-button"
+            className="auth-button"
           >
             {loading ? "Creating Account..." : "Sign Up"}
           </Button>
 
-          <p className="footer-text">
+          <p className="auth-footer-text">
             Already have an account?{" "}
-            <Link to="/login" className="footer-link">
+            <Link to="/login" className="auth-link">
               Sign In
             </Link>
           </p>

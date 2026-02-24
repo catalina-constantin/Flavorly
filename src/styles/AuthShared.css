@@ -42,10 +42,23 @@
   background-color: #d96f32 !important;
 }
 
+.auth-button.Mui-disabled,
+.auth-button.MuiButton-root.Mui-disabled,
+.auth-button.MuiButton-contained.Mui-disabled,
+.auth-button.MuiButton-containedPrimary.Mui-disabled {
+  background-color: #c75d2c !important;
+  color: #ffffff !important;
+  opacity: 0.7;
+}
+
 .auth-footer-text {
   margin-top: 24px;
   color: #6b7280;
   font-size: 0.9rem;
+}
+
+.auth-text-left {
+  text-align: left;
 }
 
 .auth-link {

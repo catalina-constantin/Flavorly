@@ -1,3 +1,22 @@
+export const validatePasswordFields = (
+  formData,
+  confirmFieldName = "repeatPassword",
+) => {
+  const errors = {};
+
+  const passwordRegex = /^(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*]).{6,}$/;
+  if (!passwordRegex.test(formData.password)) {
+    errors.password =
+      "Password needs 6+ chars, uppercase, number, and special char.";
+  }
+
+  if (formData.password !== formData[confirmFieldName]) {
+    errors[confirmFieldName] = "Passwords do not match.";
+  }
+
+  return errors;
+};
+
 export const validateRegisterForm = (formData) => {
   const errors = {};
 
@@ -9,15 +28,7 @@ export const validateRegisterForm = (formData) => {
     errors.email = "Please enter a valid email.";
   }
 
-  const passwordRegex = /^(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*]).{6,}$/;
-  if (!passwordRegex.test(formData.password)) {
-    errors.password =
-      "Password needs 6+ chars, uppercase, number, and special char.";
-  }
-
-  if (formData.password !== formData.repeatPassword) {
-    errors.repeatPassword = "Passwords do not match.";
-  }
+  Object.assign(errors, validatePasswordFields(formData, "repeatPassword"));
 
   if (!formData.acceptDataProcessing) {
     errors.acceptDataProcessing = "Agreement required*";
