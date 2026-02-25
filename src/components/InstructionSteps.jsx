@@ -3,6 +3,10 @@ import { BookOpen } from "lucide-react";
 import "../styles/InstructionSteps.css";
 
 const InstructionSteps = ({ instructions }) => {
+  if (!instructions) {
+    return null;
+  }
+
   const steps = instructions
     .split(/\s*(?=\d+\.)/)
     .filter((step) => step.trim());

@@ -1,13 +1,17 @@
 .recipe-details-page {
   width: 100%;
+  min-height: calc(100vh - 70px - 80px);
+  display: flex;
+  align-items: flex-start;
 }
 
 .recipe-details-container {
   max-width: 1200px;
-  margin: 0 auto 40px;
-  padding: 0 20px;
+  margin: 0 auto;
+  padding: 20px;
   position: relative;
   z-index: 10;
+  width: 100%;
 }
 
 .recipe-grid {

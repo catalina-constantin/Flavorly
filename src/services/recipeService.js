@@ -65,20 +65,27 @@ export const deleteRecipe = async (id) => {
     .delete()
     .eq("recipe_id", id);
 
-  if (ingredientsError) throw ingredientsError;
+  if (ingredientsError) {
+    throw ingredientsError;
+  }
 
   const { error: categoriesError } = await supabase
     .from("recipe_categories")
     .delete()
     .eq("recipe_id", id);
 
-  if (categoriesError) throw categoriesError;
+  if (categoriesError) {
+    throw categoriesError;
+  }
 
   const { error: recipeError } = await supabase
     .from("recipes")
     .delete()
     .eq("id", id);
 
-  if (recipeError) throw recipeError;
+  if (recipeError) {
+    throw recipeError;
+  }
+
   return id;
 };

@@ -28,9 +28,11 @@ const RecipeCard = ({ recipe, deleteMode }) => {
   const confirmDelete = async () => {
     try {
       await dispatch(deleteRecipe(recipe.id)).unwrap();
+      setShowModal(false);
     } catch (error) {
       const message = error?.message || "Failed to delete recipe.";
       window.alert(message);
+      setShowModal(false);
     }
   };
 
