@@ -3,10 +3,22 @@ import { getRecipes, getRecipeById } from "../services/recipeService";
 
 export const fetchRecipes = createAsyncThunk(
   "items/fetchRecipes",
-  async (_, { getState }) => {
+  async (options = {}, { getState }) => {
     const { items } = getState();
-    if (items.recipes.length > 0) return items.recipes;
+    const { forceRefresh = false } = options;
 
+    if (items.recipes.length > 0 && !forceRefresh) {
+      return { recipes: items.recipes, fromCache: true };
+    }
+
+    const recipes = await getRecipes();
+    return { recipes, fromCache: false };
+  },
+);
+
+export const refreshRecipesInBackground = createAsyncThunk(
+  "items/refreshRecipesInBackground",
+  async () => {
     return await getRecipes();
   },
 );
@@ -55,10 +67,14 @@ const itemsSlice = createSlice({
     recipeDetailsCache: {},
     currentRecipeStatus: "idle",
     prefetchingIds: [],
+    lastFetched: null,
   },
   reducers: {
     clearRecipeDetailsCache(state) {
       state.recipeDetailsCache = {};
+    },
+    resetRecipesStatus(state) {
+      state.status = "idle";
     },
   },
   extraReducers: (builder) => {
@@ -68,11 +84,20 @@ const itemsSlice = createSlice({
       })
       .addCase(fetchRecipes.fulfilled, (state, action) => {
         state.status = "succeeded";
-        state.recipes = action.payload;
+        if (action.payload) {
+          state.recipes = action.payload.recipes || action.payload;
+          if (!action.payload.fromCache) {
+            state.lastFetched = Date.now();
+          }
+        }
       })
       .addCase(fetchRecipes.rejected, (state, action) => {
         state.status = "failed";
         state.error = action.error.message;
+      })
+      .addCase(refreshRecipesInBackground.fulfilled, (state, action) => {
+        state.recipes = action.payload;
+        state.lastFetched = Date.now();
       })
       .addCase(fetchRecipeDetails.pending, (state) => {
         state.currentRecipeStatus = "loading";
@@ -110,5 +135,6 @@ const itemsSlice = createSlice({
   },
 });
 
-export const { clearRecipeDetailsCache } = itemsSlice.actions;
+export const { clearRecipeDetailsCache, resetRecipesStatus } =
+  itemsSlice.actions;
 export default itemsSlice.reducer;
