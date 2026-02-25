@@ -1,0 +1,12 @@
+.search-container {
+  flex: 2;
+}
+
+.search-input {
+  width: 100%;
+  padding: 12px 15px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  outline-color: #d36a33;
+  font-size: 1rem;
+}
