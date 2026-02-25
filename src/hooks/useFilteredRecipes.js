@@ -1,18 +1,44 @@
 import { useState, useMemo, useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
 
+const STORAGE_KEY = "recipe_filters";
+
+const readStoredFilters = () => {
+  if (typeof window === "undefined") return null;
+
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if (!raw) return null;
+    const parsed = JSON.parse(raw);
+
+    return {
+      searchTerm:
+        typeof parsed.searchTerm === "string" ? parsed.searchTerm : "",
+      selectedCategory:
+        typeof parsed.selectedCategory === "string"
+          ? parsed.selectedCategory
+          : "All",
+      sortBy: typeof parsed.sortBy === "string" ? parsed.sortBy : "newest",
+    };
+  } catch {
+    return null;
+  }
+};
+
 export function useFilteredRecipes(recipes, recipesPerPage = 12) {
   const [searchParams, setSearchParams] = useSearchParams();
+  const storedFilters = readStoredFilters();
   const [searchTerm, setSearchTerm] = useState(
-    () => searchParams.get("search") || "",
+    () => searchParams.get("search") || storedFilters?.searchTerm || "",
   );
   const displaySearchTerm = searchParams.get("search") || "";
   const [localSearchTerm, setLocalSearchTerm] = useState(displaySearchTerm);
   const [selectedCategory, setSelectedCategory] = useState(
-    () => searchParams.get("category") || "All",
+    () =>
+      searchParams.get("category") || storedFilters?.selectedCategory || "All",
   );
   const [sortBy, setSortBy] = useState(
-    () => searchParams.get("order") || "newest",
+    () => searchParams.get("order") || storedFilters?.sortBy || "newest",
   );
   const [currentPage, setCurrentPage] = useState(() => {
     const nextPage = Number(searchParams.get("page") || 1);
@@ -54,6 +80,15 @@ export function useFilteredRecipes(recipes, recipesPerPage = 12) {
     searchParams,
     setSearchParams,
   ]);
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+
+    localStorage.setItem(
+      STORAGE_KEY,
+      JSON.stringify({ searchTerm, selectedCategory, sortBy }),
+    );
+  }, [searchTerm, selectedCategory, sortBy]);
 
   const processedRecipes = useMemo(() => {
     let result = [...recipes];
