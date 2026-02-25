@@ -2,7 +2,7 @@
   display: flex;
   align-items: center;
   gap: 8px;
-  padding: 10px 16px;
+  padding: 10px 0;
   background: transparent;
   border: 1px solid transparent;
   color: #6b7280;

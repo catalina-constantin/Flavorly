@@ -1,0 +1,24 @@
+.recipe-details-header-media {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  overflow: hidden;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.12);
+  border: 6px solid #fff;
+  background: #fff;
+  flex-shrink: 0;
+}
+
+.recipe-details-header-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+
+@media (max-width: 900px) {
+  .recipe-details-header-media {
+    margin: 0 auto;
+  }
+}
