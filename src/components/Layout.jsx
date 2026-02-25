@@ -9,11 +9,11 @@ function Layout() {
   return (
     <div className="app-container">
       <Navbar />
-      <div
+      <main
         className={`content-wrap${isContactPage ? " contact-background" : ""}`}
       >
         <Outlet />
-      </div>
+      </main>
       <Footer />
     </div>
   );
