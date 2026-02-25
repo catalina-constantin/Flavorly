@@ -8,7 +8,6 @@ import { supabase } from "./supabaseClient";
 import { setUser } from "./store/authSlice";
 import { Toaster } from "react-hot-toast";
 
-import "./styles.css";
 import Home from "./pages/Home";
 import Contact from "./pages/Contact";
 import NotFound from "./pages/NotFound";

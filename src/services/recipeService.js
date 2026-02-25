@@ -5,7 +5,6 @@ export const getRecipes = async () => {
   const { data, error } = await supabase.from("recipes").select(`
       id,
       title,
-      instructions,
       cooking_time_minutes,
       image_url,
       created_at,
@@ -29,4 +28,25 @@ export const getRecipes = async () => {
       .map((rc) => rc?.categories)
       .filter(validateCategory),
   }));
+};
+
+export const getRecipeById = async (id) => {
+  const { data, error } = await supabase
+    .from("recipes")
+    .select(
+      `
+      *,
+      recipe_categories(categories(id, name)),
+      recipe_ingredients(
+        quantity, 
+        unit, 
+        ingredients(name)
+      )
+    `,
+    )
+    .eq("id", id)
+    .single();
+
+  if (error) throw error;
+  return data;
 };
