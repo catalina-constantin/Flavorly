@@ -46,7 +46,12 @@ function Contact() {
     <section className="contact-container">
       <div className="content">
         <div className="left-side">
-          <img src="/logo.png" alt="Flavorly logo" className="contact-image" />
+          <img
+            src="/logo.png"
+            alt="Flavorly logo"
+            className="contact-image"
+            loading="lazy"
+          />
           <address className="phone details">
             <i className="fas fa-phone-alt" aria-hidden="true"></i>
             <h3 className="topic">Phone support</h3>
