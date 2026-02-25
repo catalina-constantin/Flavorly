@@ -5,7 +5,7 @@
   justify-content: center;
   height: 100vh;
   width: 100vw;
-  background-color: #eae7df;
+  background-color: #f3e9dc;
   margin: 0;
   padding: 0 clamp(24px, 8vw, 120px);
   gap: 60px;
@@ -29,7 +29,7 @@
 .text-container {
   flex: 1;
   max-width: 520px;
-  color: #4f3e7c;
+  color: #c75d2c;
   font-family: "Space Grotesk", "Helvetica Neue", Arial, sans-serif;
   display: flex;
   flex-direction: column;
@@ -49,11 +49,11 @@
   font-size: 1.2rem;
   line-height: 1.6;
   margin: 0;
-  color: rgba(79, 62, 124, 0.82);
+  color: rgba(199, 93, 44, 0.82);
 }
 
 .home-button {
-  background-color: #5f4b8b;
+  background-color: #d96f32;
   color: white;
   border: none;
   padding: 16px 32px;
@@ -67,9 +67,9 @@
 }
 
 .home-button:hover {
-  background-color: #4a3a6d;
+  background-color: #c75d2c;
   transform: translateY(-1px);
-  box-shadow: 0 15px 25px rgba(95, 75, 139, 0.373);
+  box-shadow: 0 15px 25px rgba(217, 111, 50, 0.373);
 }
 
 @media (max-width: 980px) {
