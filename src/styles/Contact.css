@@ -1,15 +1,3 @@
-.visually-hidden {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  margin: -1px;
-  padding: 0;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
-  border: 0;
-}
-
 .contact-background {
   background-image: url("https://www.transparenttextures.com/patterns/black-thread-light.png");
   padding: 50px 16px;
@@ -93,8 +81,9 @@
 .topic-text {
   font-size: 28px;
   font-weight: 700;
-  color: #d96f32;
+  color: #222;
   margin-bottom: 15px;
+  font-family: "Playfair Display", serif;
 }
 
 .details .topic {
@@ -172,15 +161,28 @@ textarea:-webkit-autofill:focus {
   border: none;
   padding: 12px 30px;
   border-radius: 6px;
-  background: #d96f32;
   cursor: pointer;
   transition: all 0.3s ease;
   font-weight: 600;
 }
 
-.button button:hover {
-  background: #ca672d;
+.button button.active {
+  background: #c75d2c;
+}
+
+.button button.active:hover {
+  background: #d96f32;
   transform: translateY(-2px);
+}
+
+.button button.disabled {
+  background: #d0d0d0;
+  cursor: not-allowed;
+}
+
+.button button.disabled:hover {
+  background: #d0d0d0;
+  transform: none;
 }
 
 .visually-hidden {

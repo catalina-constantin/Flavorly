@@ -19,6 +19,9 @@ function Contact() {
     setFormData((prev) => ({ ...prev, [id]: value }));
   };
 
+  const isFormComplete =
+    formData.name.trim() && formData.email.trim() && formData.message.trim();
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -119,7 +122,13 @@ function Contact() {
             </div>
 
             <div className="button">
-              <button type="submit">Send Now</button>
+              <button
+                type="submit"
+                className={isFormComplete ? "active" : "disabled"}
+                disabled={!isFormComplete}
+              >
+                Send Now
+              </button>
             </div>
           </form>
         </div>
