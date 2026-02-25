@@ -7,7 +7,7 @@
   display: flex;
   align-items: center;
   cursor: pointer;
-  gap: 8px;
+  gap: 12px;
 }
 
 .checkbox-text {
@@ -17,25 +17,44 @@
   text-align: left;
 }
 
+.custom-checkbox {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 18px;
+  height: 18px;
+  border: 2px solid #c75d2c;
+  border-radius: 4px;
+  background-color: transparent;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.2s ease;
+  margin: 0;
+  flex-shrink: 0;
+}
+
+.custom-checkbox:checked {
+  background-color: #c75d2c;
+}
+
+.custom-checkbox:checked::after {
+  content: "✔";
+  color: white;
+  font-size: 12px;
+  display: block;
+}
+
+.custom-checkbox:focus {
+  outline: 2px solid rgba(199, 93, 44, 0.3);
+  outline-offset: 2px;
+}
+
 .error-message {
   display: block;
   color: #d32f2f;
   font-size: 0.75rem;
-  margin-left: 32px;
+  margin-left: 30px;
   margin-top: 4px;
-}
-
-.form-checkbox {
-  padding: 0 !important;
-  margin-right: 8px !important;
-}
-
-.form-checkbox .MuiSvgIcon-root {
-  color: #c75d2c;
-  width: 20px;
-  height: 20px;
-}
-
-.form-checkbox.Mui-checked .MuiSvgIcon-root {
-  color: #c75d2c !important;
+  text-align: left;
 }

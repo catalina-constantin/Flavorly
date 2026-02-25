@@ -53,18 +53,27 @@
 }
 
 .resend-button {
-  background-color: #c75d2c !important;
-  color: #ffffff !important;
-  padding: 12px 0 !important;
-  border-radius: 12px !important;
-  text-transform: none !important;
-  font-size: 1rem !important;
-  font-weight: 600 !important;
-  transition: background-color 0.3s ease !important;
+  background-color: #c75d2c;
+  color: #ffffff;
+  padding: 12px 16px;
+  border-radius: 12px;
+  font-size: 1rem;
+  font-weight: 600;
+  transition: background-color 0.3s ease;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  font-family: inherit;
 }
 
-.resend-button:hover {
-  background-color: #d96f32 !important;
+.resend-button:hover:not(:disabled) {
+  background-color: #d96f32;
+}
+
+.resend-button:disabled {
+  color: #ffffff;
+  opacity: 0.7;
+  cursor: not-allowed;
 }
 
 .verify-email-footer {

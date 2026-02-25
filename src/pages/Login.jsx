@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { Button } from "@mui/material";
 import { Link } from "react-router-dom";
 import { useLogin } from "../hooks/useLogin";
 import toast from "react-hot-toast";
@@ -65,16 +64,9 @@ function Login() {
             </span>
           </div>
 
-          <Button
-            variant="contained"
-            fullWidth
-            size="large"
-            type="submit"
-            disabled={loading}
-            className="auth-button"
-          >
+          <button type="submit" disabled={loading} className="auth-button">
             {loading ? "Signing In..." : "Log In"}
-          </Button>
+          </button>
 
           <p className="auth-footer-text">
             Don't have an account?{" "}

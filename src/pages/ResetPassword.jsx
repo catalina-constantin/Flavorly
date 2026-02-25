@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { Button } from "@mui/material";
 import { useResetPassword } from "../hooks/useResetPassword";
 import FormInput from "../components/FormInput";
 import { validatePasswordFields } from "../utils/registerValidation";

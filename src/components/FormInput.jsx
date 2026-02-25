@@ -1,6 +1,5 @@
 import React from "react";
-import { TextField, IconButton, InputAdornment } from "@mui/material";
-import { Visibility, VisibilityOff } from "@mui/icons-material";
+import { Eye, EyeOff } from "lucide-react";
 import "../styles/FormInput.css";
 
 function FormInput({
@@ -10,37 +9,42 @@ function FormInput({
   togglePassword,
   name,
   id,
+  error,
+  helperText,
   ...props
 }) {
-  const isPasswordField =
-    type === "password" || (type === "text" && togglePassword);
+  const isPasswordField = type === "password";
+  const inputId = id || name;
 
   return (
     <div className="form-group">
-      <label className="form-label" htmlFor={id || name}>
+      <label className="form-label" htmlFor={inputId}>
         {label}
       </label>
-      <TextField
-        {...props}
-        id={id || name}
-        name={name}
-        fullWidth
-        type={isPasswordField ? (showPassword ? "text" : "password") : type}
-        className="register-input"
-        InputProps={
-          togglePassword
-            ? {
-                endAdornment: (
-                  <InputAdornment position="end">
-                    <IconButton onClick={togglePassword} edge="end">
-                      {showPassword ? <VisibilityOff /> : <Visibility />}
-                    </IconButton>
-                  </InputAdornment>
-                ),
-              }
-            : undefined
-        }
-      />
+      <div className="input-container">
+        <input
+          {...props}
+          id={inputId}
+          name={name}
+          type={isPasswordField && showPassword ? "text" : type}
+          className={`custom-input ${error ? "input-error" : ""}`}
+        />
+        {isPasswordField && togglePassword && (
+          <button
+            type="button"
+            className="visibility-toggle"
+            onClick={togglePassword}
+            aria-label={showPassword ? "Hide password" : "Show password"}
+          >
+            {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
+          </button>
+        )}
+      </div>
+      {helperText && (
+        <p className={`helper-text ${error ? "text-error" : ""}`}>
+          {helperText}
+        </p>
+      )}
     </div>
   );
 }
