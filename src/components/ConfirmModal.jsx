@@ -5,9 +5,8 @@ import "../styles/ConfirmModal.css";
 const ConfirmModal = ({ isOpen, onClose, onConfirm, recipeName }) => {
   if (!isOpen) return null;
 
-  const handleConfirm = () => {
-    onConfirm();
-    onClose();
+  const handleConfirm = async () => {
+    await onConfirm();
   };
 
   return (

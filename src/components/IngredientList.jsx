@@ -1,25 +1,29 @@
 import React from "react";
-import { Utensils } from "lucide-react";
+import { UtensilsCrossed } from "lucide-react";
 import "../styles/IngredientList.css";
 
 const IngredientList = ({ ingredients }) => {
+  if (!ingredients || ingredients.length === 0) {
+    return null;
+  }
+
   return (
-    <aside className="ingredients-card">
+    <section className="ingredients-card">
       <h2>
-        <Utensils size={24} className="icon-orange" />
+        <UtensilsCrossed size={24} className="icon-orange" />
         Ingredients
       </h2>
       <ul className="ingredients-list">
-        {ingredients?.map((item, index) => (
+        {ingredients.map((ingredient, index) => (
           <li key={index}>
             <span className="ingredient-qty">
-              {item.quantity} {item.unit}
+              {ingredient.quantity} {ingredient.unit}
             </span>
-            <span className="ingredient-name">{item.ingredients?.name}</span>
+            <span>{ingredient.ingredients?.name || ingredient.name}</span>
           </li>
         ))}
       </ul>
-    </aside>
+    </section>
   );
 };
 
