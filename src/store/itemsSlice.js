@@ -28,7 +28,10 @@ export const fetchRecipeDetails = createAsyncThunk(
   async (recipeId, { getState }) => {
     const { items } = getState();
 
-    if (items.recipeDetailsCache[recipeId]) {
+    if (
+      items.recipeDetailsCache[recipeId] &&
+      items.recipeDetailsCache[recipeId].categories
+    ) {
       return {
         id: recipeId,
         data: items.recipeDetailsCache[recipeId],

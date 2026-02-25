@@ -1,0 +1,36 @@
+.ingredients-card {
+  background: white;
+  padding: 30px;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+}
+
+.ingredients-card h2 {
+  display: flex;
+  align-items: center;
+  margin-bottom: 25px;
+  font-size: 1.5rem;
+  color: #333;
+}
+
+.icon-orange {
+  color: #d36a33;
+  margin-right: 12px;
+}
+
+.ingredients-list {
+  list-style: none;
+  padding: 0;
+}
+
+.ingredients-list li {
+  padding: 12px 0;
+  border-bottom: 1px solid #f5f5f5;
+  display: flex;
+  justify-content: space-between;
+}
+
+.ingredient-qty {
+  font-weight: bold;
+  color: #d36a33;
+}
