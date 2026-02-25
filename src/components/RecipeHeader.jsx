@@ -10,10 +10,10 @@ function RecipeHeader() {
         className="recipes-banner"
       />
       <div className="header-content">
-        <h1>From my stove to your table</h1>
+        <h1>From my kitchen to yours</h1>
         <p>
-          Pull up a chair! These are the recipes I finally wrote down so I’d
-          stop forgetting my own secrets.
+          Pull up a chair and find something delicious. These are the recipes I
+          finally wrote down so I would stop forgetting my own secrets.
         </p>
       </div>
     </header>
