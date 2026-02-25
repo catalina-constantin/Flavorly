@@ -80,10 +80,12 @@ function Contact() {
               <div className="input-box">
                 <input
                   id="name"
+                  name="name"
                   type="text"
                   placeholder="Enter your name"
                   value={formData.name}
                   onChange={handleChange}
+                  autoComplete="name"
                   required
                 />
               </div>
@@ -92,10 +94,12 @@ function Contact() {
             <div className="input-box">
               <input
                 id="email"
+                name="email"
                 type="email"
                 placeholder="Enter your email"
                 value={formData.email}
                 onChange={handleChange}
+                autoComplete="email"
                 required
               />
             </div>
@@ -103,6 +107,7 @@ function Contact() {
             <div className="input-box message-box">
               <textarea
                 id="message"
+                name="message"
                 placeholder="Message details..."
                 value={formData.message}
                 onChange={handleChange}

@@ -47,7 +47,10 @@ const ForgotPassword = () => {
           <FormInput
             label="Email address"
             type="email"
+            name="email"
+            id="forgot-password-email"
             placeholder="name@example.com"
+            autoComplete="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
           />

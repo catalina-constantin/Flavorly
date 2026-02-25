@@ -3,7 +3,6 @@
   text-align: center;
   height: 40vh;
   width: 100%;
-  padding-top: 60px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -82,7 +81,7 @@
   text-shadow: none;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1200px) {
   .header-content {
     width: 40vw;
   }
