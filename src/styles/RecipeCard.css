@@ -11,6 +11,7 @@
   flex-direction: column;
   height: 100%;
   cursor: pointer;
+  position: relative;
 }
 
 .recipe-card:hover {
@@ -19,6 +20,41 @@
     0 14px 28px rgba(211, 106, 51, 0.15),
     0 10px 10px rgba(0, 0, 0, 0.05);
   border-color: #d36a33;
+}
+
+.recipe-card.delete-mode {
+  cursor: default;
+}
+
+.recipe-card.delete-mode:hover {
+  transform: none;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+  border-color: #f0f0f0;
+}
+
+.delete-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background-color: #a72703;
+  color: white;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  z-index: 10;
+  box-shadow: 0 2px 8px rgba(220, 53, 69, 0.3);
+}
+
+.delete-button:hover {
+  background-color: #8d2508;
+  transform: scale(1.1);
+  box-shadow: 0 4px 12px rgba(220, 53, 69, 0.5);
 }
 
 .recipe-image-wrapper {
