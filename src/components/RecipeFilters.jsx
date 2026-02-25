@@ -10,6 +10,9 @@ const RecipeFilters = ({
 }) => {
   return (
     <div className="filter-group">
+      <label htmlFor="category-filter" className="visually-hidden">
+        Filter by category
+      </label>
       <select
         id="category-filter"
         name="category-filter"
@@ -23,6 +26,9 @@ const RecipeFilters = ({
         ))}
       </select>
 
+      <label htmlFor="sort-by" className="visually-hidden">
+        Sort recipes
+      </label>
       <select
         id="sort-by"
         name="sort-by"

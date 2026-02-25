@@ -7,6 +7,7 @@ import { store, persistor } from "./store/store";
 import { setUser } from "./store/authSlice";
 import { Toaster } from "react-hot-toast";
 import { lazy, Suspense } from "react";
+import { supabase } from "./supabaseClient";
 
 const Home = lazy(() => import("./pages/Home"));
 const Recipes = lazy(() => import("./pages/Recipes"));
@@ -39,7 +40,6 @@ export default function App() {
     let unsubscribe = null;
 
     const initSession = async () => {
-      const { supabase } = await import("./supabaseClient");
       if (!isMounted) {
         return;
       }
