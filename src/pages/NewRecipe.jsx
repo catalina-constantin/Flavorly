@@ -9,27 +9,60 @@ import CategorySelector from "../components/CategorySelector";
 import IngredientForm from "../components/IngredientForm";
 import "../styles/NewRecipe.css";
 
+const STORAGE_KEY = "newRecipeFormData";
+
+const getStoredFormData = () => {
+  try {
+    const stored = localStorage.getItem(STORAGE_KEY);
+    return stored ? JSON.parse(stored) : null;
+  } catch {
+    return null;
+  }
+};
+
+const clearStoredFormData = () => {
+  localStorage.removeItem(STORAGE_KEY);
+};
+
 function NewRecipe() {
   const { user } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const [formData, setFormData] = useState({
-    title: "",
-    cooking_time_minutes: "",
-    image_url: "",
-    instructions: "",
-  });
+  const storedData = getStoredFormData();
+
+  const [formData, setFormData] = useState(
+    storedData?.formData || {
+      title: "",
+      cooking_time_minutes: "",
+      image_url: "",
+      instructions: "",
+    },
+  );
 
   const [categories, setCategories] = useState([]);
   const [ingredients, setIngredients] = useState([]);
-  const [selectedCategories, setSelectedCategories] = useState([]);
-  const [recipeIngredients, setRecipeIngredients] = useState([]);
+  const [selectedCategories, setSelectedCategories] = useState(
+    storedData?.selectedCategories || [],
+  );
+  const [recipeIngredients, setRecipeIngredients] = useState(
+    storedData?.recipeIngredients || [],
+  );
   const [newCategoryName, setNewCategoryName] = useState("");
   const [newIngredientName, setNewIngredientName] = useState("");
   const [showNewCategory, setShowNewCategory] = useState(false);
   const [showNewIngredient, setShowNewIngredient] = useState(false);
   const [loading, setLoading] = useState(false);
+
+  // Save to localStorage when form data changes
+  useEffect(() => {
+    const dataToStore = {
+      formData,
+      selectedCategories,
+      recipeIngredients,
+    };
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(dataToStore));
+  }, [formData, selectedCategories, recipeIngredients]);
 
   useEffect(() => {
     fetchCategories();
@@ -255,6 +288,7 @@ function NewRecipe() {
       }
 
       dispatch(resetRecipesStatus());
+      clearStoredFormData();
       alert("Recipe created successfully!");
       navigate(`/recipes/${recipe.id}`);
     } catch (error) {
@@ -273,6 +307,28 @@ function NewRecipe() {
     recipeIngredients.some(
       (ing) => ing.ingredient_id && ing.quantity && ing.unit,
     );
+
+  const hasDraft =
+    formData.title ||
+    formData.cooking_time_minutes ||
+    formData.image_url ||
+    formData.instructions ||
+    selectedCategories.length > 0 ||
+    recipeIngredients.length > 0;
+
+  const handleClearDraft = () => {
+    if (window.confirm("Are you sure you want to clear this draft?")) {
+      setFormData({
+        title: "",
+        cooking_time_minutes: "",
+        image_url: "",
+        instructions: "",
+      });
+      setSelectedCategories([]);
+      setRecipeIngredients([]);
+      clearStoredFormData();
+    }
+  };
 
   return (
     <section className="new-recipe-page">
@@ -322,6 +378,15 @@ function NewRecipe() {
           />
 
           <div className="form-actions">
+            {hasDraft && (
+              <button
+                type="button"
+                className="clear-draft-button"
+                onClick={handleClearDraft}
+              >
+                Clear Draft
+              </button>
+            )}
             <button
               type="submit"
               className="submit-button"
