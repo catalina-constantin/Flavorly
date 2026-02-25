@@ -1,0 +1,41 @@
+.checkbox-section {
+  margin-top: 8px;
+  margin-bottom: 16px;
+}
+
+.checkbox-wrapper {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  gap: 8px;
+}
+
+.checkbox-text {
+  font-size: 13px;
+  color: #4b5563;
+  line-height: 1.4;
+  text-align: left;
+}
+
+.error-message {
+  display: block;
+  color: #d32f2f;
+  font-size: 0.75rem;
+  margin-left: 32px;
+  margin-top: 4px;
+}
+
+.form-checkbox {
+  padding: 0 !important;
+  margin-right: 8px !important;
+}
+
+.form-checkbox .MuiSvgIcon-root {
+  color: #c75d2c;
+  width: 20px;
+  height: 20px;
+}
+
+.form-checkbox.Mui-checked .MuiSvgIcon-root {
+  color: #c75d2c !important;
+}

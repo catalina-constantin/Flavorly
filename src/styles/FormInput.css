@@ -1,0 +1,33 @@
+.form-group {
+  margin-bottom: 16px;
+  text-align: left;
+}
+
+.form-label {
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #4b5563;
+  margin-bottom: 4px;
+}
+
+.register-input .MuiOutlinedInput-root {
+  border-radius: 12px;
+  background-color: #ffffff;
+}
+
+.register-input
+  .MuiOutlinedInput-root.Mui-focused
+  .MuiOutlinedInput-notchedOutline {
+  border-color: #f8b259 !important;
+}
+
+.register-input .MuiFormHelperText-root {
+  margin-left: 4px;
+}
+
+.MuiButtonBase-root:hover,
+.MuiButtonBase-root:focus,
+.MuiButtonBase-root:active {
+  background-color: transparent !important;
+}
