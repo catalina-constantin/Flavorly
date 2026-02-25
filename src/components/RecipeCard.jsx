@@ -1,10 +1,13 @@
 import React from "react";
 import { Clock } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { prefetchRecipeDetails } from "../store/itemsSlice";
 import "../styles/RecipeCard.css";
 
 const RecipeCard = ({ recipe }) => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const placeholderImage = "/default.png";
 
   const handleClick = () => {
@@ -14,8 +17,16 @@ const RecipeCard = ({ recipe }) => {
     navigate(`/recipes/${recipe.id}`);
   };
 
+  const handleMouseEnter = () => {
+    dispatch(prefetchRecipeDetails(recipe.id));
+  };
+
   return (
-    <div className="recipe-card" onClick={handleClick}>
+    <div
+      className="recipe-card"
+      onClick={handleClick}
+      onMouseEnter={handleMouseEnter}
+    >
       <div className="recipe-image-wrapper">
         <img
           src={recipe.image_url || placeholderImage}

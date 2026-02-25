@@ -1,26 +1,20 @@
-import { useState, useEffect } from "react";
-import { getRecipes } from "../services/recipeService";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchRecipes } from "../store/itemsSlice";
 
 export const useRecipes = () => {
-  const [recipes, setRecipes] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const dispatch = useDispatch();
+  const { recipes, status, error } = useSelector((state) => state.items);
 
   useEffect(() => {
-    const fetchAllRecipes = async () => {
-      try {
-        setLoading(true);
-        const data = await getRecipes();
-        setRecipes(data);
-      } catch (err) {
-        setError(err.message);
-      } finally {
-        setLoading(false);
-      }
-    };
+    if (status === "idle") {
+      dispatch(fetchRecipes());
+    }
+  }, [status, dispatch]);
 
-    fetchAllRecipes();
-  }, []);
-
-  return { recipes, loading, error };
+  return {
+    recipes,
+    loading: status === "loading",
+    error,
+  };
 };

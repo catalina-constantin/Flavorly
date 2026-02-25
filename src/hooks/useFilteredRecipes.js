@@ -6,6 +6,8 @@ export function useFilteredRecipes(recipes, recipesPerPage = 12) {
   const [searchTerm, setSearchTerm] = useState(
     () => searchParams.get("search") || "",
   );
+  const displaySearchTerm = searchParams.get("search") || "";
+  const [localSearchTerm, setLocalSearchTerm] = useState(displaySearchTerm);
   const [selectedCategory, setSelectedCategory] = useState(
     () => searchParams.get("category") || "All",
   );
@@ -16,6 +18,18 @@ export function useFilteredRecipes(recipes, recipesPerPage = 12) {
     const nextPage = Number(searchParams.get("page") || 1);
     return Number.isFinite(nextPage) && nextPage > 0 ? nextPage : 1;
   });
+
+  useEffect(() => {
+    setLocalSearchTerm(displaySearchTerm);
+  }, [displaySearchTerm]);
+
+  useEffect(() => {
+    const handler = setTimeout(() => {
+      setSearchTerm(localSearchTerm);
+    }, 300);
+
+    return () => clearTimeout(handler);
+  }, [localSearchTerm]);
 
   useEffect(() => {
     const nextParams = new URLSearchParams();
@@ -51,8 +65,8 @@ export function useFilteredRecipes(recipes, recipesPerPage = 12) {
     }
 
     if (selectedCategory !== "All") {
-      result = result.filter((r) => 
-        r.categories?.some(cat => cat.name === selectedCategory)
+      result = result.filter((r) =>
+        r.categories?.some((cat) => cat.name === selectedCategory),
       );
     }
 
@@ -79,8 +93,8 @@ export function useFilteredRecipes(recipes, recipesPerPage = 12) {
 
   return {
     filters: {
-      searchTerm,
-      setSearchTerm,
+      searchTerm: localSearchTerm,
+      setSearchTerm: setLocalSearchTerm,
       selectedCategory,
       setSelectedCategory,
       sortBy,
