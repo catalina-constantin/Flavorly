@@ -24,6 +24,7 @@ export const getRecipes = async () => {
 
   return data.filter(validateRecipe).map((recipe) => ({
     ...recipe,
+    cooking_time_minutes: Number(recipe.cooking_time_minutes),
     categories: (recipe.recipe_categories || [])
       .map((rc) => rc?.categories)
       .filter(validateCategory),
@@ -56,4 +57,28 @@ export const getRecipeById = async (id) => {
   };
   console.log("Processed data with categories:", processedData);
   return processedData;
+};
+
+export const deleteRecipe = async (id) => {
+  const { error: ingredientsError } = await supabase
+    .from("recipe_ingredients")
+    .delete()
+    .eq("recipe_id", id);
+
+  if (ingredientsError) throw ingredientsError;
+
+  const { error: categoriesError } = await supabase
+    .from("recipe_categories")
+    .delete()
+    .eq("recipe_id", id);
+
+  if (categoriesError) throw categoriesError;
+
+  const { error: recipeError } = await supabase
+    .from("recipes")
+    .delete()
+    .eq("id", id);
+
+  if (recipeError) throw recipeError;
+  return id;
 };

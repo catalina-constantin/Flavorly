@@ -4,10 +4,8 @@ export const validateRecipe = (recipe) => {
     return false;
   }
 
-  if (
-    typeof recipe.cooking_time_minutes !== "number" ||
-    recipe.cooking_time_minutes < 0
-  ) {
+  const cookingTime = Number(recipe.cooking_time_minutes);
+  if (!Number.isFinite(cookingTime) || cookingTime < 0) {
     console.warn("Invalid cooking_time_minutes", recipe);
     return false;
   }

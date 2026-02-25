@@ -1,4 +1,5 @@
 import React, { useMemo, useState } from "react";
+import { useSelector } from "react-redux";
 import { useRecipes } from "../hooks/useRecipes";
 import RecipeList from "../components/RecipeList";
 import SearchBar from "../components/SearchBar";
@@ -11,6 +12,7 @@ import "../styles/Recipes.css";
 
 function Recipes() {
   const [deleteMode, setDeleteMode] = useState(false);
+  const { role, isAuthenticated } = useSelector((state) => state.auth);
   const { recipes, loading, error } = useRecipes();
   const { filters, pagination, currentRecipes } = useFilteredRecipes(recipes);
 
@@ -58,10 +60,12 @@ function Recipes() {
           )}
         </div>
       </div>
-      <FloatingActionButton
-        onClick={() => setDeleteMode(!deleteMode)}
-        isDeleteMode={deleteMode}
-      />
+      {isAuthenticated && role === "admin" && (
+        <FloatingActionButton
+          onClick={() => setDeleteMode(!deleteMode)}
+          isDeleteMode={deleteMode}
+        />
+      )}
     </>
   );
 }
