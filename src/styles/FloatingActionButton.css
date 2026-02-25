@@ -1,0 +1,41 @@
+.fab-button {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background-color: #d36a33;
+  color: white;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 10px 25px rgba(211, 106, 51, 0.4);
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  z-index: 1000;
+}
+
+.fab-button:hover {
+  background-color: #b85a2a;
+  transform: scale(1.05);
+}
+
+.fab-button.delete-mode {
+  background-color: #a72703;
+  box-shadow: 0 10px 25px rgba(220, 53, 69, 0.4);
+}
+
+.fab-button.delete-mode:hover {
+  background-color: #8d2508;
+}
+
+@media (max-width: 480px) {
+  .fab-button {
+    bottom: 20px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+  }
+}

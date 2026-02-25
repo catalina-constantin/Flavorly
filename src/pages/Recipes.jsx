@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import React, { useMemo, useState } from "react";
 import { useRecipes } from "../hooks/useRecipes";
 import RecipeList from "../components/RecipeList";
 import SearchBar from "../components/SearchBar";
@@ -6,9 +6,11 @@ import RecipeFilters from "../components/RecipeFilters";
 import Pagination from "../components/Pagination";
 import RecipeHeader from "../components/RecipeHeader";
 import { useFilteredRecipes } from "../hooks/useFilteredRecipes";
+import FloatingActionButton from "../components/FloatingActionButton";
 import "../styles/Recipes.css";
 
 function Recipes() {
+  const [deleteMode, setDeleteMode] = useState(false);
   const { recipes, loading, error } = useRecipes();
   const { filters, pagination, currentRecipes } = useFilteredRecipes(recipes);
 
@@ -16,9 +18,9 @@ function Recipes() {
     () => [
       "All",
       ...new Set(
-        recipes.flatMap((r) => 
-          r.categories?.map(cat => cat.name) || []
-        ).filter(Boolean)
+        recipes
+          .flatMap((r) => r.categories?.map((cat) => cat.name) || [])
+          .filter(Boolean),
       ),
     ],
     [recipes],
@@ -42,7 +44,7 @@ function Recipes() {
         <div className="recipes-results">
           {currentRecipes.length > 0 ? (
             <>
-              <RecipeList recipes={currentRecipes} />
+              <RecipeList recipes={currentRecipes} deleteMode={deleteMode} />
               <Pagination
                 currentPage={pagination.currentPage}
                 totalPages={pagination.totalPages}
@@ -56,6 +58,10 @@ function Recipes() {
           )}
         </div>
       </div>
+      <FloatingActionButton
+        onClick={() => setDeleteMode(!deleteMode)}
+        isDeleteMode={deleteMode}
+      />
     </>
   );
 }
