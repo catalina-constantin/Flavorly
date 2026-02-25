@@ -1,0 +1,24 @@
+.logo-container {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  gap: 6px;
+}
+
+.logo-img {
+  height: 34px;
+  width: auto;
+  display: block;
+  transition: transform 0.3s ease;
+  padding: 0 6px 0 0;
+}
+
+.logo-text {
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: #2e2e2e;
+}
+
+.logo-container:hover .logo-img {
+  transform: scale(1.05);
+}
