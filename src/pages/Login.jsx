@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { useLogin } from "../hooks/useLogin";
 import toast from "react-hot-toast";
 import FormInput from "../components/FormInput";
+import GoBackButton from "../components/GoBackButton";
 import "../styles/AuthShared.css";
 
 function Login() {
@@ -23,6 +24,7 @@ function Login() {
 
   return (
     <div className="auth-container">
+      <GoBackButton />
       <div className="auth-paper">
         <h1 className="auth-title">Login</h1>
         <form onSubmit={onSubmit} className="auth-form">

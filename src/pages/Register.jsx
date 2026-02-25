@@ -8,6 +8,7 @@ import { useRegister } from "../hooks/useRegister";
 
 import FormInput from "../components/FormInput";
 import FormCheckbox from "../components/FormCheckbox";
+import GoBackButton from "../components/GoBackButton";
 import "../styles/AuthShared.css";
 
 const Register = () => {
@@ -39,6 +40,7 @@ const Register = () => {
 
   return (
     <div className="auth-container">
+      <GoBackButton />
       <div className="auth-paper">
         <h1 className="auth-title">Register</h1>
         <form onSubmit={onSubmit} className="auth-form">

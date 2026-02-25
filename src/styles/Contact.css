@@ -1,7 +1,5 @@
 .contact-background {
-  background-color: #f3e9dc;
   background-image: url("https://www.transparenttextures.com/patterns/black-thread-light.png");
-  background-repeat: repeat;
   padding: 50px 16px;
 }
 
@@ -184,7 +182,7 @@ textarea:-webkit-autofill:focus {
   border: 0;
 }
 
-@media (max-width: 850px) {
+@media (max-width: 925px) {
   .contact-background {
     padding: 30px 16px;
   }
@@ -221,7 +219,7 @@ textarea:-webkit-autofill:focus {
   }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 640px) {
   .contact-background {
     padding: 0;
   }

@@ -3,18 +3,27 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #f3e9dc;
+  background-image: url("https://www.transparenttextures.com/patterns/black-thread-light.png");
   padding: 32px 16px;
+  position: relative;
 }
 
 .auth-paper {
   width: 100%;
-  max-width: 450px;
+  max-width: 500px;
   background-color: #ffffff;
   border-radius: 24px;
   padding: 48px;
   text-align: center;
   box-shadow: 0 30px 80px rgba(199, 93, 44, 0.12);
+  position: relative;
+}
+
+.auth-container .go-back-button {
+  position: absolute;
+  top: 24px;
+  left: 24px;
+  margin-bottom: 0;
 }
 
 .auth-title {

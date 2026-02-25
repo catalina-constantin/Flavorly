@@ -6,16 +6,17 @@
 }
 
 .logo-img {
-  height: 28px;
+  height: 34px;
   width: auto;
   display: block;
   transition: transform 0.3s ease;
+  padding: 0 6px 0 0;
 }
 
 .logo-text {
   font-size: 1.15rem;
   font-weight: 800;
-  color: #141414;
+  color: #2e2e2e;
 }
 
 .logo-container:hover .logo-img {
