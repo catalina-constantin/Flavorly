@@ -32,6 +32,7 @@ const RecipeCard = ({ recipe }) => {
           src={recipe.image_url || placeholderImage}
           alt={recipe.title}
           className="recipe-image"
+          loading="lazy"
         />
       </div>
       <div className="recipe-content">

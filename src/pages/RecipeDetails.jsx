@@ -51,6 +51,7 @@ function RecipeDetails() {
           src={recipe.image_url || "/default.png"}
           alt={recipe.title}
           className="detail-image"
+          loading="lazy"
         />
 
         <section className="ingredients-section">
