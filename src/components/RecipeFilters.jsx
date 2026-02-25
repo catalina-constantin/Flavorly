@@ -11,6 +11,8 @@ const RecipeFilters = ({
   return (
     <div className="filter-group">
       <select
+        id="category-filter"
+        name="category-filter"
         value={selectedCategory}
         onChange={(e) => setSelectedCategory(e.target.value)}
       >
@@ -21,7 +23,12 @@ const RecipeFilters = ({
         ))}
       </select>
 
-      <select value={sortBy} onChange={(e) => setSortBy(e.target.value)}>
+      <select
+        id="sort-by"
+        name="sort-by"
+        value={sortBy}
+        onChange={(e) => setSortBy(e.target.value)}
+      >
         <option value="newest">Newest First</option>
         <option value="time-asc">Cooking Time (Low to High)</option>
         <option value="time-desc">Cooking Time (High to Low)</option>

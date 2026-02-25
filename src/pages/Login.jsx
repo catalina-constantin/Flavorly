@@ -31,7 +31,10 @@ function Login() {
           <FormInput
             label="Email address"
             type="email"
+            name="email"
+            id="login-email"
             placeholder="name@example.com"
+            autoComplete="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
           />
@@ -39,7 +42,10 @@ function Login() {
           <FormInput
             label="Password"
             type="password"
+            name="password"
+            id="login-password"
             placeholder="••••••••"
+            autoComplete="current-password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             showPassword={showPassword}

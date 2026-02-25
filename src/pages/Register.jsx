@@ -46,7 +46,10 @@ const Register = () => {
         <form onSubmit={onSubmit} className="auth-form">
           <FormInput
             label="Full name"
+            name="fullName"
+            id="register-fullName"
             placeholder="John Doe"
+            autoComplete="name"
             value={formData.fullName}
             onChange={handleChange("fullName")}
             error={Boolean(errors.fullName)}
@@ -56,7 +59,10 @@ const Register = () => {
           <FormInput
             label="Email address"
             type="email"
+            name="email"
+            id="register-email"
             placeholder="name@example.com"
+            autoComplete="email"
             value={formData.email}
             onChange={handleChange("email")}
             error={Boolean(errors.email)}
@@ -66,7 +72,10 @@ const Register = () => {
           <FormInput
             label="Password"
             type="password"
+            name="password"
+            id="register-password"
             placeholder="••••••••"
+            autoComplete="new-password"
             value={formData.password}
             onChange={handleChange("password")}
             showPassword={showPassword}
@@ -78,7 +87,10 @@ const Register = () => {
           <FormInput
             label="Confirm password"
             type="password"
+            name="repeatPassword"
+            id="register-repeatPassword"
             placeholder="••••••••"
+            autoComplete="new-password"
             value={formData.repeatPassword}
             onChange={handleChange("repeatPassword")}
             showPassword={showPassword}

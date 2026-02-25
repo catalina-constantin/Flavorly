@@ -55,6 +55,8 @@ const ResetPassword = () => {
           <FormInput
             label="New Password"
             type="password"
+            name="password"
+            id="reset-password"
             placeholder="••••••••"
             value={password}
             onChange={handleChange("password")}
@@ -68,6 +70,8 @@ const ResetPassword = () => {
           <FormInput
             label="Confirm New Password"
             type="password"
+            name="confirmPassword"
+            id="reset-confirmPassword"
             placeholder="••••••••"
             value={confirmPassword}
             onChange={handleChange("confirmPassword")}

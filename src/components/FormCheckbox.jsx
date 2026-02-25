@@ -5,8 +5,10 @@ import "../styles/FormCheckbox.css";
 function FormCheckbox({ checked, onChange, error }) {
   return (
     <div className="checkbox-section">
-      <label className="checkbox-wrapper">
+      <label className="checkbox-wrapper" htmlFor="acceptDataProcessing">
         <Checkbox
+          id="acceptDataProcessing"
+          name="acceptDataProcessing"
           checked={checked}
           onChange={onChange}
           className="form-checkbox"
