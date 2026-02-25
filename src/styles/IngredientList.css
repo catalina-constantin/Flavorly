@@ -34,3 +34,23 @@
   font-weight: bold;
   color: #d36a33;
 }
+
+.ingredients-header-group {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.ingredients-header-group h2 {
+  margin-bottom: 0;
+}
+
+@media (max-width: 480px) {
+  .ingredients-header-group {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
