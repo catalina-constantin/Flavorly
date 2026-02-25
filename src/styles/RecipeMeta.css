@@ -1,0 +1,22 @@
+.recipe-meta {
+  display: flex;
+  gap: 20px;
+}
+
+.meta-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #ffffff;
+  padding: 8px 15px;
+  border-radius: 50px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+  color: #1f2933;
+}
+
+@media (max-width: 900px) {
+  .recipe-meta {
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+}

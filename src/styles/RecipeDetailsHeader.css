@@ -1,85 +1,55 @@
 .recipe-details-header {
-  display: grid;
-  grid-template-columns: auto 1fr;
-  gap: 32px;
-  align-items: center;
-  padding: 40px 0 20px;
-}
-
-.recipe-details-header-media {
-  width: 200px;
-  height: 200px;
-  border-radius: 50%;
-  overflow: hidden;
-  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.12);
-  border: 6px solid #fff;
-  background: #fff;
-}
-
-.recipe-details-header-image {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center;
-  display: block;
-}
-
-.recipe-details-header-content {
-  color: #1f2933;
-}
-
-.recipe-categories {
   display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin-bottom: 15px;
+  flex-direction: row;
+  gap: 20px;
+  padding-top: 10px;
+  align-items: center;
 }
 
-.recipe-category-badge {
-  background: #d36a33;
-  color: #fff;
-  padding: 4px 12px;
-  border-radius: 20px;
-  font-size: 0.8rem;
-  font-weight: bold;
-  text-transform: uppercase;
+.recipe-header-info-wrapper {
+  width: 100%;
 }
 
 .recipe-details-header-content h1 {
-  font-size: 3rem;
+  font-size: clamp(1.5rem, 5vw, 3rem);
   margin: 12px 0 16px;
   font-family: "Playfair Display", serif;
   color: #1f2933;
-}
-
-.recipe-meta {
-  display: flex;
-  gap: 20px;
-}
-
-.meta-item {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  background: #ffffff;
-  padding: 8px 15px;
-  border-radius: 50px;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
-  color: #1f2933;
+  line-height: 1.2;
 }
 
 @media (max-width: 900px) {
   .recipe-details-header {
-    grid-template-columns: 1fr;
-    text-align: center;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .recipe-details-header-content {
+    display: contents;
+  }
+
+  .recipe-details-header-content > :first-child {
+    order: 1;
   }
 
   .recipe-details-header-media {
-    margin: 0 auto;
+    order: 2;
   }
 
-  .recipe-meta {
-    justify-content: center;
-    flex-wrap: wrap;
+  .recipe-header-info-wrapper {
+    order: 3;
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 0 10px;
+  }
+
+  .recipe-details-header-content h1 {
+    text-align: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .recipe-header-info-wrapper {
+    max-width: 100%;
   }
 }

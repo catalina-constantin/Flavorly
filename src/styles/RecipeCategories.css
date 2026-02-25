@@ -1,0 +1,23 @@
+.recipe-details-categories {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  gap: 8px;
+  margin: 15px 0;
+}
+
+.recipe-details-category-badge {
+  background: #d36a33;
+  color: #fff;
+  padding: 8px 12px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+@media (max-width: 900px) {
+  .recipe-details-categories {
+    justify-content: center;
+  }
+}
