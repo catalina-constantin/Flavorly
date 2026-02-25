@@ -1,4 +1,3 @@
-import React from "react";
 import recipesHeaderImage from "../assets/images/recipes-header.png";
 import "../styles/RecipeHeader.css";
 

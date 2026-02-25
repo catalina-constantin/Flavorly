@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { Button } from "@mui/material";
 import { Link } from "react-router-dom";
 import toast from "react-hot-toast";
 import { sendPasswordReset } from "../services/authService";
@@ -55,16 +54,9 @@ const ForgotPassword = () => {
             onChange={(e) => setEmail(e.target.value)}
           />
 
-          <Button
-            variant="contained"
-            fullWidth
-            size="large"
-            type="submit"
-            disabled={loading}
-            className="auth-button"
-          >
+          <button type="submit" disabled={loading} className="auth-button">
             {loading ? "Sending..." : "Send Reset Link"}
-          </Button>
+          </button>
 
           <p className="auth-footer-text">
             Remember your password?{" "}

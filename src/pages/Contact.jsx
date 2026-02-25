@@ -44,24 +44,27 @@ function Contact() {
 
   return (
     <section className="contact-container">
+      <h1 className="visually-hidden">Contact Us</h1>
       <div className="content">
         <div className="left-side">
           <img
             src="/logo.png"
             alt="Flavorly logo"
             className="contact-image"
+            width="120"
+            height="120"
             loading="lazy"
           />
           <address className="phone details">
             <i className="fas fa-phone-alt" aria-hidden="true"></i>
-            <h3 className="topic">Phone support</h3>
+            <h2 className="topic">Phone support</h2>
             <div className="text-one">+40 722 000 000</div>
             <div className="text-two">+40 31 100 00 00</div>
           </address>
 
           <address className="email details">
             <i className="fas fa-envelope" aria-hidden="true"></i>
-            <h3 className="topic">Email</h3>
+            <h2 className="topic">Email</h2>
             <div className="text-one">chef@flavorly.com</div>
             <div className="text-two">support@flavorly.com</div>
           </address>

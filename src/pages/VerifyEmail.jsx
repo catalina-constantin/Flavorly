@@ -1,5 +1,4 @@
 import React from "react";
-import { Button } from "@mui/material";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { clearAuthTempData } from "../store/authSlice";
@@ -31,16 +30,13 @@ const VerifyEmail = () => {
         </p>
 
         <div className="verify-email-actions">
-          <Button
-            variant="contained"
-            fullWidth
-            size="large"
+          <button
             onClick={handleResend}
             disabled={loading || !(user?.email || pendingEmail)}
             className="resend-button"
           >
             {loading ? "Sending..." : "Resend Verification Email"}
-          </Button>
+          </button>
         </div>
 
         <div className="verify-email-footer-group">

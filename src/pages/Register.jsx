@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { Button } from "@mui/material";
 import { Link } from "react-router-dom";
 
 import { validateRegisterForm } from "../utils/registerValidation";
@@ -104,16 +103,9 @@ const Register = () => {
             error={errors.acceptDataProcessing}
           />
 
-          <Button
-            variant="contained"
-            fullWidth
-            size="large"
-            type="submit"
-            disabled={loading}
-            className="auth-button"
-          >
+          <button type="submit" disabled={loading} className="auth-button">
             {loading ? "Creating Account..." : "Sign Up"}
-          </Button>
+          </button>
 
           <p className="auth-footer-text">
             Already have an account?{" "}

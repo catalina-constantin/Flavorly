@@ -20,18 +20,32 @@
   gap: 12px;
 }
 
-.social-icons .MuiIconButton-root {
+.social-button {
+  background: transparent;
+  border: none;
   color: #f3e9dc;
+  cursor: pointer;
+  padding: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition:
+    transform 0.2s ease,
+    opacity 0.2s ease;
+  outline: none;
+  border-radius: 50%;
 }
 
-.social-icons .MuiIconButton-root:hover {
+.social-button:hover {
   transform: scale(1.1);
-  background-color: transparent;
+  opacity: 0.8;
+  background-color: rgba(243, 233, 220, 0.1);
 }
 
 .copyright-text {
-  margin-top: 5px;
+  margin: 0;
   opacity: 0.9;
+  font-size: 0.95rem;
 }
 
 @media (max-width: 768px) {
@@ -41,11 +55,12 @@
     flex-direction: column;
   }
 
-  .social-icons .MuiIconButton-root {
+  .social-button {
     padding: 12px;
   }
 
   .copyright-text {
     font-size: 0.85rem;
+    text-align: center;
   }
 }

@@ -1,11 +1,13 @@
 import React from "react";
-import { IconButton } from "@mui/material";
-import { Facebook, Instagram, Twitter } from "@mui/icons-material";
-
+import { Facebook, Instagram, Twitter } from "lucide-react";
 import "../styles/Footer.css";
 
 function Footer() {
   const currentYear = new Date().getFullYear();
+
+  const handleSocialClick = (url) => {
+    window.open(url, "_blank", "noopener,noreferrer");
+  };
 
   return (
     <footer className="footer-container">
@@ -13,16 +15,29 @@ function Footer() {
         Copyright &copy; {currentYear} - All Rights Reserved
       </p>
       <div className="social-icons">
-        <IconButton href="https://facebook.com" target="_blank">
-          <Facebook />
-        </IconButton>
+        <button
+          className="social-button"
+          onClick={() => handleSocialClick("https://facebook.com")}
+          aria-label="Visit our Facebook page"
+        >
+          <Facebook size={20} />
+        </button>
 
-        <IconButton href="https://instagram.com" target="_blank">
-          <Instagram />
-        </IconButton>
-        <IconButton href="https://twitter.com" target="_blank">
-          <Twitter />
-        </IconButton>
+        <button
+          className="social-button"
+          onClick={() => handleSocialClick("https://instagram.com")}
+          aria-label="Visit our Instagram page"
+        >
+          <Instagram size={20} />
+        </button>
+
+        <button
+          className="social-button"
+          onClick={() => handleSocialClick("https://twitter.com")}
+          aria-label="Visit our Twitter page"
+        >
+          <Twitter size={20} />
+        </button>
       </div>
     </footer>
   );

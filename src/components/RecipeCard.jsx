@@ -47,7 +47,7 @@ const RecipeCard = ({ recipe }) => {
             <span className="recipe-category">Uncategorized</span>
           )}
         </div>
-        <h3>{recipe.title}</h3>
+        <h2>{recipe.title}</h2>
         <div className="recipe-info">
           <span className="recipe-time">
             <Clock size={18} /> {recipe.cooking_time_minutes} mins
