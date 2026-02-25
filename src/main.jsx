@@ -1,7 +1,7 @@
 import { StrictMode, useEffect } from "react";
 import { createRoot } from "react-dom/client";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { Provider, useDispatch } from "react-redux";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { Provider, useDispatch, useSelector } from "react-redux";
 import { PersistGate } from "redux-persist/integration/react";
 import { store, persistor } from "./store/store";
 import { setUser } from "./store/authSlice";
@@ -10,6 +10,7 @@ import { lazy, Suspense } from "react";
 
 const Home = lazy(() => import("./pages/Home"));
 const Recipes = lazy(() => import("./pages/Recipes"));
+const NewRecipe = lazy(() => import("./pages/NewRecipe"));
 const RecipeDetails = lazy(() => import("./pages/RecipeDetails"));
 const Contact = lazy(() => import("./pages/Contact"));
 const Login = lazy(() => import("./pages/Login"));
@@ -19,6 +20,16 @@ const ForgotPassword = lazy(() => import("./pages/ForgotPassword"));
 const ResetPassword = lazy(() => import("./pages/ResetPassword"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 const Layout = lazy(() => import("./components/Layout"));
+
+function RequireAdmin({ children }) {
+  const { isAuthenticated, role } = useSelector((state) => state.auth);
+
+  if (!isAuthenticated || role !== "admin") {
+    return <Navigate to="/recipes" replace />;
+  }
+
+  return children;
+}
 
 export default function App() {
   const dispatch = useDispatch();
@@ -98,6 +109,14 @@ export default function App() {
           <Route element={<Layout />}>
             <Route path="/" element={<Home />} />
             <Route path="/recipes" element={<Recipes />} />
+            <Route
+              path="/recipes/new"
+              element={
+                <RequireAdmin>
+                  <NewRecipe />
+                </RequireAdmin>
+              }
+            />
             <Route path="/recipes/:id" element={<RecipeDetails />} />
             <Route path="/contact" element={<Contact />} />
           </Route>

@@ -1,4 +1,5 @@
 import React, { useMemo, useState } from "react";
+import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { useRecipes } from "../hooks/useRecipes";
 import RecipeList from "../components/RecipeList";
@@ -41,6 +42,11 @@ function Recipes() {
             setSearchTerm={filters.setSearchTerm}
           />
           <RecipeFilters {...filters} categories={categories} />
+          {isAuthenticated && role === "admin" && (
+            <Link to="/recipes/new" className="add-recipe-button">
+              Add new recipe
+            </Link>
+          )}
         </section>
 
         <div className="recipes-results">
