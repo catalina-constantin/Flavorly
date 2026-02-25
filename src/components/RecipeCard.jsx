@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Clock, X } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { prefetchRecipeDetails } from "../store/itemsSlice";
+import { prefetchRecipeDetails, deleteRecipe } from "../store/itemsSlice";
 import ConfirmModal from "./ConfirmModal";
 import "../styles/RecipeCard.css";
 
@@ -25,9 +25,13 @@ const RecipeCard = ({ recipe, deleteMode }) => {
     setShowModal(true);
   };
 
-  const confirmDelete = () => {
-    console.log("Delete recipe:", recipe.id);
-    // TODO: Implement delete functionality
+  const confirmDelete = async () => {
+    try {
+      await dispatch(deleteRecipe(recipe.id)).unwrap();
+    } catch (error) {
+      const message = error?.message || "Failed to delete recipe.";
+      window.alert(message);
+    }
   };
 
   const handleMouseEnter = () => {

@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { getRecipes, getRecipeById } from "../services/recipeService";
+import { getRecipes, getRecipeById, deleteRecipe as deleteRecipeService } from "../services/recipeService";
 
 export const fetchRecipes = createAsyncThunk(
   "items/fetchRecipes",
@@ -61,6 +61,14 @@ export const prefetchRecipeDetails = createAsyncThunk(
   },
 );
 
+  export const deleteRecipe = createAsyncThunk(
+    "items/deleteRecipe",
+    async (recipeId) => {
+      await deleteRecipeService(recipeId);
+      return recipeId;
+    },
+  );
+
 const itemsSlice = createSlice({
   name: "items",
   initialState: {
@@ -76,6 +84,10 @@ const itemsSlice = createSlice({
     clearRecipeDetailsCache(state) {
       state.recipeDetailsCache = {};
     },
+      removeRecipeFromList(state, action) {
+        state.recipes = state.recipes.filter(recipe => recipe.id !== action.payload);
+        delete state.recipeDetailsCache[action.payload];
+      },
     resetRecipesStatus(state) {
       state.status = "idle";
     },
@@ -134,10 +146,17 @@ const itemsSlice = createSlice({
         state.prefetchingIds = state.prefetchingIds.filter(
           (id) => id !== recipeId,
         );
+        })
+        .addCase(deleteRecipe.fulfilled, (state, action) => {
+          state.recipes = state.recipes.filter(recipe => recipe.id !== action.payload);
+          delete state.recipeDetailsCache[action.payload];
+        })
+        .addCase(deleteRecipe.rejected, (state, action) => {
+          state.error = action.error.message;
       });
   },
 });
 
-export const { clearRecipeDetailsCache, resetRecipesStatus } =
+export const { clearRecipeDetailsCache, resetRecipesStatus, removeRecipeFromList } =
   itemsSlice.actions;
 export default itemsSlice.reducer;
