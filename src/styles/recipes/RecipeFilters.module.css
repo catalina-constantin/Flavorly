@@ -30,6 +30,11 @@ select {
   cursor: pointer;
   outline-color: #d36a33;
   max-width: 100%;
+  font-family: sans-serif;
+  color: #888;
+  font-size: 15px;
+  letter-spacing: 0.01em;
+  font-weight: 400;
 }
 
 @media (max-width: 480px) {
