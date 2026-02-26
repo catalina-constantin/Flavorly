@@ -1,47 +1,80 @@
 import React, { useEffect, useState } from "react";
+import Loading from "../components/common/Loading";
 import { supabase } from "../supabaseClient";
+import { Mail } from "lucide-react";
+import InboxHeader from "../components/inbox/InboxHeader";
+import MessageCard from "../components/inbox/MessageCard";
 import styles from "../styles/pages/Inbox.module.css";
+import { showErrorToast, showSuccessToast } from "../utils/toastHelpers";
 
 function Inbox() {
   const [messages, setMessages] = useState([]);
   const [loading, setLoading] = useState(true);
 
+  const fetchMessages = async () => {
+    setLoading(true);
+    const { data, error } = await supabase
+      .from("contact_messages")
+      .select("id, full_name, email, message, created_at")
+      .order("created_at", { ascending: false });
+
+    if (error) showErrorToast("Failed to fetch messages");
+    else setMessages(data || []);
+    setLoading(false);
+  };
+
   useEffect(() => {
-    const fetchMessages = async () => {
-      setLoading(true);
-      const { data, error } = await supabase
-        .from("contact_messages")
-        .select("id, full_name, email, message, created_at")
-        .order("created_at", { ascending: false });
-      if (!error) setMessages(data || []);
-      setLoading(false);
+    const fetchData = async () => {
+      await fetchMessages();
     };
-    fetchMessages();
+    fetchData();
   }, []);
 
+  const handleDelete = async (id) => {
+    if (!window.confirm("Are you sure you want to delete this message?"))
+      return;
+    const { error } = await supabase
+      .from("contact_messages")
+      .delete()
+      .eq("id", id);
+    if (error) showErrorToast("Could not delete message");
+    else {
+      showSuccessToast("Message deleted");
+      setMessages((prev) => prev.filter((msg) => msg.id !== id));
+    }
+  };
+
+  const handleSendEmail = (email, fullName, answer) => {
+    const subject = encodeURIComponent("Re: Your message to Flavorly");
+    const body = encodeURIComponent(`Hi ${fullName},\n\n${answer}`);
+    window.location.href = `mailto:${email}?subject=${subject}&body=${body}`;
+  };
+
   return (
-    <section className={styles["inbox-container"]}>
-      <h1>Inbox</h1>
-      {loading ? (
-        <div className={styles["loading"]}>Loading messages...</div>
-      ) : messages.length === 0 ? (
-        <div className={styles["empty"]}>No messages found.</div>
-      ) : (
-        <ul className={styles["messages-list"]}>
-          {messages.map((msg) => (
-            <li key={msg.id} className={styles["message-card"]}>
-              <div className={styles["message-header"]}>
-                <span className={styles["sender"]}>{msg.full_name}</span>
-                <span className={styles["email"]}>{msg.email}</span>
-                <span className={styles["date"]}>
-                  {new Date(msg.created_at).toLocaleString()}
-                </span>
-              </div>
-              <div className={styles["message-body"]}>{msg.message}</div>
-            </li>
-          ))}
-        </ul>
-      )}
+    <section className={styles["inbox-page"]}>
+      <div className={styles["inbox-container"]}>
+        <InboxHeader count={messages.length} />
+
+        {loading ? (
+          <Loading />
+        ) : messages.length === 0 ? (
+          <div className={styles["empty-state"]}>
+            <Mail size={48} />
+            <p>Your inbox is empty. No spice here yet!</p>
+          </div>
+        ) : (
+          <div className={styles["messages-grid"]}>
+            {messages.map((msg) => (
+              <MessageCard
+                key={msg.id}
+                msg={msg}
+                onDelete={handleDelete}
+                onSendEmail={handleSendEmail}
+              />
+            ))}
+          </div>
+        )}
+      </div>
     </section>
   );
 }
