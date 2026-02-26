@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback } from "react";
 import { useSearchParams, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import toast from "react-hot-toast";
+import { showSuccessToast, showErrorToast } from "../utils/toastHelpers";
 import { setUser } from "../store/authSlice";
 import {
   verifyEmailToken,
@@ -27,14 +27,11 @@ export const useVerifyEmail = () => {
           const profile = await getUserProfile(session.user.id);
           dispatch(setUser({ user: session.user, role: profile?.role }));
 
-          toast.success("Email verified successfully!", {
-            style: { border: "1px solid #4C763B", padding: "16px" },
-            iconTheme: { primary: "#4C763B", secondary: "#FFFAEE" },
-          });
+          showSuccessToast("Email verified successfully!");
           navigate("/");
         }
       } catch (err) {
-        toast.error(err.message || "Verification failed.");
+        showErrorToast(err.message || "Verification failed.");
       } finally {
         setLoading(false);
       }
@@ -62,9 +59,9 @@ export const useVerifyEmail = () => {
     setLoading(true);
     try {
       await resendVerificationEmail(email);
-      toast.success("Verification email sent!");
+      showSuccessToast("Verification email sent!");
     } catch (err) {
-      toast.error(err.message || "Failed to resend email.");
+      showErrorToast(err.message || "Failed to resend email.");
     } finally {
       setLoading(false);
     }

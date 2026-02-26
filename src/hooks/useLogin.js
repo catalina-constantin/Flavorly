@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import toast from "react-hot-toast";
 import { supabase } from "../supabaseClient";
 import { setUser } from "../store/authSlice";
+import { showSuccessToast, showErrorToast } from "../utils/toastHelpers";
 
 export const useLogin = () => {
   const [loading, setLoading] = useState(false);
@@ -22,7 +22,7 @@ export const useLogin = () => {
 
       if (data.user && !data.user.email_confirmed_at) {
         dispatch(setUser({ user: data.user, role: "visitor" }));
-        toast.error("Please verify your email before logging in.");
+        showErrorToast("Please verify your email before logging in.");
         navigate("/verify-email");
         return;
       }
@@ -34,17 +34,11 @@ export const useLogin = () => {
         .single();
 
       dispatch(setUser({ user: data.user, role: profile?.role }));
-      toast.success("Welcome back to Flavorly!", {
-        style: { border: "1px solid #4C763B", padding: "16px" },
-        iconTheme: { primary: "#4C763B", secondary: "#FFFAEE" },
-      });
+      showSuccessToast("Welcome back to Flavorly!");
 
       navigate("/");
     } catch (err) {
-      toast.error(err.message || "Invalid email or password.", {
-        style: { border: "1px solid #C75D2C", padding: "16px" },
-        iconTheme: { primary: "#C75D2C", secondary: "#FFFAEE" },
-      });
+      showErrorToast(err.message || "Invalid email or password.");
     } finally {
       setLoading(false);
     }
