@@ -1,4 +1,4 @@
-import { StrictMode, useEffect } from "react";
+import { StrictMode, useEffect, useState } from "react";
 import { createRoot } from "react-dom/client";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { Provider, useDispatch, useSelector } from "react-redux";
@@ -32,8 +32,19 @@ function RequireAdmin({ children }) {
   return children;
 }
 
+function RequireGuest({ children }) {
+  const { isAuthenticated } = useSelector((state) => state.auth);
+
+  if (isAuthenticated) {
+    return <Navigate to="/recipes" replace />;
+  }
+
+  return children;
+}
+
 export default function App() {
   const dispatch = useDispatch();
+  const [authReady, setAuthReady] = useState(false);
 
   useEffect(() => {
     let isMounted = true;
@@ -55,7 +66,11 @@ export default function App() {
           .single();
 
         dispatch(setUser({ user: session.user, role: profile?.role }));
+      } else {
+        dispatch(setUser({ user: null, role: null }));
       }
+
+      setAuthReady(true);
 
       const {
         data: { subscription },
@@ -75,27 +90,19 @@ export default function App() {
       unsubscribe = () => subscription.unsubscribe();
     };
 
-    let scheduleId = null;
-    if ("requestIdleCallback" in window) {
-      scheduleId = window.requestIdleCallback(initSession, { timeout: 1500 });
-    } else {
-      scheduleId = window.setTimeout(initSession, 0);
-    }
+    initSession();
 
     return () => {
       isMounted = false;
       if (unsubscribe) {
         unsubscribe();
       }
-      if (scheduleId !== null) {
-        if ("cancelIdleCallback" in window) {
-          window.cancelIdleCallback(scheduleId);
-        } else {
-          clearTimeout(scheduleId);
-        }
-      }
     };
   }, [dispatch]);
+
+  if (!authReady) {
+    return <div className="loading-screen">Flavorly is heating up...</div>;
+  }
 
   return (
     <>
@@ -120,11 +127,46 @@ export default function App() {
             <Route path="/recipes/:id" element={<RecipeDetails />} />
             <Route path="/contact" element={<Contact />} />
           </Route>
-          <Route path="/login" element={<Login />} />
-          <Route path="/forgot-password" element={<ForgotPassword />} />
-          <Route path="/reset-password" element={<ResetPassword />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/verify-email" element={<VerifyEmail />} />
+          <Route
+            path="/login"
+            element={
+              <RequireGuest>
+                <Login />
+              </RequireGuest>
+            }
+          />
+          <Route
+            path="/forgot-password"
+            element={
+              <RequireGuest>
+                <ForgotPassword />
+              </RequireGuest>
+            }
+          />
+          <Route
+            path="/reset-password"
+            element={
+              <RequireGuest>
+                <ResetPassword />
+              </RequireGuest>
+            }
+          />
+          <Route
+            path="/register"
+            element={
+              <RequireGuest>
+                <Register />
+              </RequireGuest>
+            }
+          />
+          <Route
+            path="/verify-email"
+            element={
+              <RequireGuest>
+                <VerifyEmail />
+              </RequireGuest>
+            }
+          />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </Suspense>
