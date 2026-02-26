@@ -1,16 +1,126 @@
-# React + Vite
+# Flavorly Recipe App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern recipe management web application built with React, Vite, Redux Toolkit, Supabase, and CSS Modules. Designed for both users and admins, featuring authentication, recipe CRUD, contact inbox, and responsive UI.
 
-Currently, two official plugins are available:
+![Landing page](docs/home-page.png)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Features
 
-## React Compiler
+- Browse, search, and filter recipes
+  ![Recipe page](docs/recipes-page.png)
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- See details about each recipe
+  ![Recipe details](docs/recipe-details.png)
 
-## Expanding the ESLint configuration
+- Add and delete recipes (admin only)
+  ![Add recipe](docs/add-recipe.png)
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- User authentication (register, login, email verification, password reset)
+- Admin inbox for contact messages
+  ![Admin inbox](docs/admin-inbox.png)
+
+- Responsive design and accessibility
+- Toast notifications for feedback
+- Modular, maintainable codebase
+
+## Technologies Used
+
+- **React** (with hooks)
+- **Vite** (for fast development/build)
+- **Redux Toolkit** (state management)
+- **Supabase** (PostgreSQL, authentication, storage)
+- **CSS Modules** (scoped styling)
+- **Lucide React** (icons)
+- **react-router-dom** (routing)
+
+## Supabase Schema
+
+The app uses Supabase for backend services. Below is the schema for the main tables:
+
+![Supabase Schema](docs/supabase-schema.png)
+
+- `profiles`: Stores user info and roles
+- `recipes`: Recipe data
+- `contact_messages`: Contact form submissions
+
+> See `docs/schema.sql` for full SQL schema.
+
+## Getting Started
+
+### 1. Clone the repository
+
+```bash
+git clone https://github.com/catalina-constantin/Recipe-App/
+cd Recipe-App
+```
+
+### 2. Install dependencies
+
+```bash
+npm install
+```
+
+### 3. Configure Supabase
+
+- Create a project at [supabase.com](https://supabase.com)
+- Create tables using `docs/schema.sql`
+- Enable Row Level Security and set policies for `profiles`, `recipes`, and `contact_messages`
+- Get your Supabase URL and anon/public key
+- Copy `.env.example` to `.env` and fill in your credentials:
+
+```env
+VITE_SUPABASE_URL=https://your-project.supabase.co
+VITE_SUPABASE_KEY=your-anon-key
+```
+
+- Your `src/supabaseClient.js` should use these environment variables:
+
+```js
+export const supabase = createClient(
+  import.meta.env.VITE_SUPABASE_URL,
+  import.meta.env.VITE_SUPABASE_KEY,
+);
+```
+
+### 4. Run the app
+
+```bash
+npm run dev
+```
+
+- Open [http://localhost:5173](http://localhost:5173) in your browser
+
+## Folder Structure
+
+```
+src/
+  components/
+    ... (UI components)
+  pages/
+    ... (page views)
+  services/
+    ... (API logic)
+  store/
+    ... (Redux slices)
+  styles/
+    ... (CSS Modules)
+  utils/
+    ... (helpers)
+docs/
+  schema.sql
+  supabase-schema.png
+```
+
+## Admin Features
+
+- Inbox page for contact messages (visible only to admin)
+- Recipe management (CRUD)
+- Role-based access control
+
+## Accessibility & Responsiveness
+
+- All pages and components are accessible and mobile-friendly
+
+## License
+
+This project is for educational purposes.
