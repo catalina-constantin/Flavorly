@@ -43,6 +43,7 @@ const ForgotPassword = () => {
         <form onSubmit={handleSubmit} className={styles["auth-form"]}>
           <FormInput
             label="Email address"
+            labelClassName="visually-hidden"
             type="email"
             name="email"
             id="forgot-password-email"
