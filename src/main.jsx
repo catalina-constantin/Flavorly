@@ -14,13 +14,13 @@ const Recipes = lazy(() => import("./pages/Recipes"));
 const NewRecipe = lazy(() => import("./pages/NewRecipe"));
 const RecipeDetails = lazy(() => import("./pages/RecipeDetails"));
 const Contact = lazy(() => import("./pages/Contact"));
-const Login = lazy(() => import("./pages/Login"));
+const Login = lazy(() => import("./pages/auth/Login"));
 const Register = lazy(() => import("./pages/Register"));
-const VerifyEmail = lazy(() => import("./pages/VerifyEmail"));
-const ForgotPassword = lazy(() => import("./pages/ForgotPassword"));
-const ResetPassword = lazy(() => import("./pages/ResetPassword"));
+const VerifyEmail = lazy(() => import("./pages/auth/VerifyEmail"));
+const ForgotPassword = lazy(() => import("./pages/auth/ForgotPassword"));
+const ResetPassword = lazy(() => import("./pages/auth/ResetPassword"));
 const NotFound = lazy(() => import("./pages/NotFound"));
-const Layout = lazy(() => import("./components/Layout"));
+const Layout = lazy(() => import("./layout/Layout"));
 
 function RequireAdmin({ children }) {
   const { isAuthenticated, role } = useSelector((state) => state.auth);

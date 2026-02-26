@@ -5,10 +5,10 @@ import { validateRegisterForm } from "../utils/registerValidation";
 import { useRegisterForm } from "../hooks/useRegisterForm";
 import { useRegister } from "../hooks/useRegister";
 
-import FormInput from "../components/FormInput";
-import FormCheckbox from "../components/FormCheckbox";
-import GoBackButton from "../components/GoBackButton";
-import "../styles/AuthShared.css";
+import FormInput from "../components/forms/FormInput";
+import FormCheckbox from "../components/forms/FormCheckbox";
+import GoBackButton from "../components/common/buttons/GoBackButton";
+import styles from "../styles/pages/auth/AuthShared.module.css";
 
 const Register = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -38,11 +38,11 @@ const Register = () => {
   };
 
   return (
-    <div className="auth-container">
+    <div className={styles["auth-container"]}>
       <GoBackButton />
-      <div className="auth-paper">
-        <h1 className="auth-title">Register</h1>
-        <form onSubmit={onSubmit} className="auth-form">
+      <div className={styles["auth-paper"]}>
+        <h1 className={styles["auth-title"]}>Register</h1>
+        <form onSubmit={onSubmit} className={styles["auth-form"]}>
           <FormInput
             label="Full name"
             name="fullName"
@@ -103,13 +103,17 @@ const Register = () => {
             error={errors.acceptDataProcessing}
           />
 
-          <button type="submit" disabled={loading} className="auth-button">
+          <button
+            type="submit"
+            disabled={loading}
+            className={styles["auth-button"]}
+          >
             {loading ? "Creating Account..." : "Sign Up"}
           </button>
 
-          <p className="auth-footer-text">
+          <p className={styles["auth-footer-text"]}>
             Already have an account?{" "}
-            <Link to="/login" className="auth-link">
+            <Link to="/login" className={styles["auth-link"]}>
               Sign In
             </Link>
           </p>

@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { gsap } from "gsap";
-import "../styles/NotFound.css";
+import styles from "../styles/pages/NotFound.module.css";
 
 function NotFound() {
   const svgRef = useRef(null);
@@ -63,8 +63,8 @@ function NotFound() {
   }, []);
 
   return (
-    <div className="container" ref={svgRef}>
-      <svg className="milk-404" viewBox="0 0 500 500">
+    <div className={styles["container"]} ref={svgRef}>
+      <svg className={styles["milk-404"]} viewBox="0 0 500 500">
         <g id="milk-spill" fill="#fff">
           <path
             id="milk-spill--large"
@@ -160,15 +160,15 @@ function NotFound() {
           </g>
         </g>
       </svg>
-      <div className="text-container">
+      <div className={styles["text-container"]}>
         <h1>Oops...</h1>
         <h1> We have a missing ingredient!</h1>
         <p>
           Every great dish needs a secret ingredient, but this page seems to be
-          missing entirely. Don’t let your hunger wait... let’s find something
+          missing entirely. Don't let your hunger wait... let's find something
           else to cook.
         </p>
-        <button onClick={() => navigate("/")} className="home-button">
+        <button onClick={() => navigate("/")} className={styles["home-button"]}>
           Browse new recipes
         </button>
       </div>
