@@ -34,7 +34,7 @@ const ForgotPassword = () => {
         <h1 className={styles["auth-title"]}>Reset Password</h1>
         <p
           className={`${styles["auth-footer-text"]} ${styles["auth-text-left"]}`}
-          style={{ marginBottom: "24px" }}
+          style={{ marginBottom: "10px" }}
         >
           Enter your email address and we'll send you a link to reset your
           password.
@@ -42,7 +42,7 @@ const ForgotPassword = () => {
 
         <form onSubmit={handleSubmit} className={styles["auth-form"]}>
           <FormInput
-            label="Email address"
+            label=""
             labelClassName="visually-hidden"
             type="email"
             name="email"
