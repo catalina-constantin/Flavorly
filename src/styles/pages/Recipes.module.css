@@ -12,7 +12,8 @@
   flex-wrap: wrap;
   gap: 15px;
   margin: 30px 0;
-  justify-content: center;
+  align-items: center;
+  justify-content: space-between;
   background: #fff;
   padding: 20px;
   border-radius: 12px;
@@ -20,6 +21,16 @@
   width: 100%;
   max-width: 1200px;
   box-sizing: border-box;
+}
+
+.controls-section > :nth-child(1) {
+  flex: 1;
+  min-width: 200px;
+}
+
+.controls-section > :nth-child(2) {
+  flex: 0 0 auto;
+  min-width: 200px;
 }
 
 .add-recipe-button {
@@ -38,6 +49,8 @@
     background 0.2s ease,
     box-shadow 0.2s ease;
   box-shadow: 0 8px 18px rgba(199, 93, 44, 0.25);
+  flex: 0 0 auto;
+  white-space: nowrap;
 }
 
 .add-recipe-button:hover {
@@ -59,45 +72,44 @@
   color: #d36a33;
 }
 
-@media (max-width: 768px) {
-  .recipes-header {
-    height: 35vh;
+@media (max-width: 1024px) {
+  .controls-section {
+    justify-content: center;
   }
 
-  .recipes-header h1 {
-    font-size: 1.8rem;
+  .controls-section > :nth-child(1) {
+    flex: 1 0 100%;
+    margin-bottom: 10px;
+  }
+
+  .controls-section > :nth-child(2) {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .add-recipe-button {
+    flex: 0 0 auto;
+    height: 45px;
+    box-sizing: border-box;
   }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 768px) {
   .controls-section {
     flex-direction: column;
     align-items: stretch;
+    gap: 15px;
   }
 
-  .filter-group {
-    justify-content: space-between;
+  .controls-section > :nth-child(1),
+  .controls-section > :nth-child(2) {
+    width: 100%;
+    margin-bottom: 0;
   }
 
-  .filter-group select {
-    flex: 1;
-  }
-}
-
-@media (max-width: 480px) {
-  .recipes-container {
-    padding: 0 15px;
-  }
-
-  .recipes-header h1 {
-    font-size: 1.5rem;
-  }
-
-  .recipes-header p {
-    font-size: 0.9rem;
-  }
-
-  .controls-section {
-    padding: 15px;
+  .add-recipe-button {
+    width: 100%;
+    display: flex;
+    margin-bottom: 0;
   }
 }
