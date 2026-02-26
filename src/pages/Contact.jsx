@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { supabase } from "../supabaseClient";
-import "../styles/Contact.css";
+import styles from "../styles/pages/Contact.module.css";
 
 function Contact() {
   const [formData, setFormData] = useState(() => {
@@ -46,35 +46,35 @@ function Contact() {
   };
 
   return (
-    <section className="contact-container">
-      <h1 className="visually-hidden">Contact Us</h1>
-      <div className="content">
-        <div className="left-side">
+    <section className={styles["contact-container"]}>
+      <h1 className={styles["visually-hidden"]}>Contact Us</h1>
+      <div className={styles["content"]}>
+        <div className={styles["left-side"]}>
           <img
             src="/logo.png"
             alt="Flavorly logo"
-            className="contact-image"
+            className={styles["contact-image"]}
             width="120"
             height="120"
             loading="lazy"
           />
-          <address className="phone details">
+          <address className={`${styles["phone"]} ${styles["details"]}`}>
             <i className="fas fa-phone-alt" aria-hidden="true"></i>
-            <h2 className="topic">Phone support</h2>
-            <div className="text-one">+40 722 000 000</div>
-            <div className="text-two">+40 31 100 00 00</div>
+            <h2 className={styles["topic"]}>Phone support</h2>
+            <div className={styles["text-one"]}>+40 722 000 000</div>
+            <div className={styles["text-two"]}>+40 31 100 00 00</div>
           </address>
 
-          <address className="email details">
+          <address className={`${styles["email"]} ${styles["details"]}`}>
             <i className="fas fa-envelope" aria-hidden="true"></i>
-            <h2 className="topic">Email</h2>
-            <div className="text-one">chef@flavorly.com</div>
-            <div className="text-two">support@flavorly.com</div>
+            <h2 className={styles["topic"]}>Email</h2>
+            <div className={styles["text-one"]}>chef@flavorly.com</div>
+            <div className={styles["text-two"]}>support@flavorly.com</div>
           </address>
         </div>
 
-        <div className="right-side">
-          <h2 className="topic-text">Send us a message</h2>
+        <div className={styles["right-side"]}>
+          <h2 className={styles["topic-text"]}>Send us a message</h2>
           <p>
             Have a secret recipe to share or found a bug while filtering your
             favorite ingredients? Our team is ready to assist you. Drop us a
@@ -82,8 +82,8 @@ function Contact() {
           </p>
 
           <form onSubmit={handleSubmit}>
-            <div className="input-box">
-              <div className="input-box">
+            <div className={styles["input-box"]}>
+              <div className={styles["input-box"]}>
                 <input
                   id="name"
                   name="name"
@@ -97,7 +97,7 @@ function Contact() {
               </div>
             </div>
 
-            <div className="input-box">
+            <div className={styles["input-box"]}>
               <input
                 id="email"
                 name="email"
@@ -110,7 +110,7 @@ function Contact() {
               />
             </div>
 
-            <div className="input-box message-box">
+            <div className={`${styles["input-box"]} ${styles["message-box"]}`}>
               <textarea
                 id="message"
                 name="message"
@@ -121,10 +121,12 @@ function Contact() {
               ></textarea>
             </div>
 
-            <div className="button">
+            <div className={styles["button"]}>
               <button
                 type="submit"
-                className={isFormComplete ? "active" : "disabled"}
+                className={
+                  isFormComplete ? styles["active"] : styles["disabled"]
+                }
                 disabled={!isFormComplete}
               >
                 Send Now

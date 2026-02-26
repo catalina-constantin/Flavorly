@@ -3,11 +3,11 @@ import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { supabase } from "../supabaseClient";
 import { resetRecipesStatus } from "../store/itemsSlice";
-import GoBackButton from "../components/GoBackButton";
-import RecipeBasicInfo from "../components/RecipeBasicInfo";
-import CategorySelector from "../components/CategorySelector";
-import IngredientForm from "../components/IngredientForm";
-import "../styles/NewRecipe.css";
+import GoBackButton from "../components/common/buttons/GoBackButton";
+import RecipeBasicInfo from "../components/recipes/recipe-form/RecipeBasicInfo";
+import CategorySelector from "../components/forms/CategorySelector";
+import IngredientForm from "../components/recipes/recipe-form/IngredientForm";
+import styles from "../styles/pages/NewRecipe.module.css";
 
 const STORAGE_KEY = "newRecipeFormData";
 
@@ -331,15 +331,15 @@ function NewRecipe() {
   };
 
   return (
-    <section className="new-recipe-page">
-      <div className="new-recipe-container">
+    <section className={styles["new-recipe-page"]}>
+      <div className={styles["new-recipe-container"]}>
         <GoBackButton />
         <h1>Add a new recipe</h1>
 
-        <form onSubmit={handleSubmit} className="recipe-form">
+        <form onSubmit={handleSubmit} className={styles["recipe-form"]}>
           <RecipeBasicInfo formData={formData} onChange={handleChange} />
 
-          <div className="form-group">
+          <div className={styles["form-group"]}>
             <label htmlFor="instructions">Instructions *</label>
             <textarea
               id="instructions"
@@ -377,11 +377,11 @@ function NewRecipe() {
             onKeyDown={handleIngredientKeyDown}
           />
 
-          <div className="form-actions">
+          <div className={styles["form-actions"]}>
             {hasDraft && (
               <button
                 type="button"
-                className="clear-draft-button"
+                className={styles["clear-draft-button"]}
                 onClick={handleClearDraft}
               >
                 Clear Draft
@@ -389,7 +389,7 @@ function NewRecipe() {
             )}
             <button
               type="submit"
-              className="submit-button"
+              className={styles["submit-button"]}
               disabled={!isFormValid || loading}
             >
               {loading ? "Creating..." : "Create Recipe"}
