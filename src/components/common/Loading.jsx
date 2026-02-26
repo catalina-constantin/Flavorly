@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "../../styles/common/Loading.module.css";
 
-const Loading = ({ message = "Flavorly is heating up..." }) => {
+function Loading({ message = "Flavorly is heating up..." }) {
   return (
     <div
       className={styles["loading-container"]}
@@ -12,6 +12,6 @@ const Loading = ({ message = "Flavorly is heating up..." }) => {
       <p className={styles.message}>{message}</p>
     </div>
   );
-};
+}
 
 export default Loading;

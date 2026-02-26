@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "../../styles/common/Pagination.module.css";
 
-const Pagination = ({ currentPage, totalPages, onPageChange }) => {
+function Pagination({ currentPage, totalPages, onPageChange }) {
   const handlePageChange = (page) => {
     onPageChange(page);
     setTimeout(() => {
@@ -32,6 +32,6 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => {
       </button>
     </div>
   );
-};
+}
 
 export default Pagination;
