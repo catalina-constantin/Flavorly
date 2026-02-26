@@ -15,7 +15,7 @@ const NewRecipe = lazy(() => import("./pages/NewRecipe"));
 const RecipeDetails = lazy(() => import("./pages/RecipeDetails"));
 const Contact = lazy(() => import("./pages/Contact"));
 const Login = lazy(() => import("./pages/auth/Login"));
-const Register = lazy(() => import("./pages/Register"));
+const Register = lazy(() => import("./pages/auth/Register"));
 const VerifyEmail = lazy(() => import("./pages/auth/VerifyEmail"));
 const ForgotPassword = lazy(() => import("./pages/auth/ForgotPassword"));
 const ResetPassword = lazy(() => import("./pages/auth/ResetPassword"));

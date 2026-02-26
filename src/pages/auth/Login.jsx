@@ -23,7 +23,9 @@ function Login() {
 
   return (
     <div className={styles["auth-container"]}>
-      <GoBackButton />
+      <div className={styles["back-button-wrapper"]}>
+        <GoBackButton />
+      </div>
       <div className={styles["auth-paper"]}>
         <h1 className={styles["auth-title"]}>Login</h1>
         <form onSubmit={onSubmit} className={styles["auth-form"]}>

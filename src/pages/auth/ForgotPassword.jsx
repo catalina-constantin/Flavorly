@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import toast from "react-hot-toast";
 import { sendPasswordReset } from "../../services/authService";
 import FormInput from "../../components/forms/FormInput";
+import GoBackButton from "../../components/common/buttons/GoBackButton";
 import styles from "../../styles/pages/auth/AuthShared.module.css";
 
 const ForgotPassword = () => {
@@ -32,6 +33,9 @@ const ForgotPassword = () => {
 
   return (
     <div className={styles["auth-container"]}>
+      <div className={styles["back-button-wrapper"]}>
+        <GoBackButton />
+      </div>
       <div className={styles["auth-paper"]}>
         <h1 className={styles["auth-title"]}>Reset Password</h1>
         <p

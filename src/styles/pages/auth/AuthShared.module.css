@@ -19,11 +19,11 @@
   position: relative;
 }
 
-.auth-container .go-back-button {
+.back-button-wrapper {
   position: absolute;
   top: 24px;
   left: 24px;
-  margin-bottom: 0;
+  z-index: 10;
 }
 
 .auth-title {
