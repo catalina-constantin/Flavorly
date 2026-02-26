@@ -1,6 +1,6 @@
 import styles from "../../styles/forms/SearchBar.module.css";
 
-const SearchBar = ({ searchTerm, setSearchTerm }) => {
+function SearchBar({ searchTerm, setSearchTerm }) {
   return (
     <div className={styles["search-container"]}>
       <input
@@ -14,6 +14,6 @@ const SearchBar = ({ searchTerm, setSearchTerm }) => {
       />
     </div>
   );
-};
+}
 
 export default SearchBar;

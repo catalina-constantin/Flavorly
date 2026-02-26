@@ -1,5 +1,5 @@
 import React from "react";
-import { Facebook, Instagram, Twitter } from "lucide-react";
+import { SiFacebook, SiInstagram, SiX } from "react-icons/si";
 import styles from "../../styles/layout/Footer.module.css";
 
 function Footer() {
@@ -20,7 +20,7 @@ function Footer() {
           onClick={() => handleSocialClick("https://facebook.com")}
           aria-label="Visit our Facebook page"
         >
-          <Facebook size={20} />
+          <SiFacebook size={20} />
         </button>
 
         <button
@@ -28,15 +28,15 @@ function Footer() {
           onClick={() => handleSocialClick("https://instagram.com")}
           aria-label="Visit our Instagram page"
         >
-          <Instagram size={20} />
+          <SiInstagram size={20} />
         </button>
 
         <button
           className={styles["social-button"]}
-          onClick={() => handleSocialClick("https://twitter.com")}
-          aria-label="Visit our Twitter page"
+          onClick={() => handleSocialClick("https://x.com")}
+          aria-label="Visit our X page"
         >
-          <Twitter size={20} />
+          <SiX size={20} />
         </button>
       </div>
     </footer>
