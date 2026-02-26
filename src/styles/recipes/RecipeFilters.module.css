@@ -1,8 +1,11 @@
 .filter-group {
   display: flex;
+  flex-direction: row;
   gap: 10px;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   justify-content: center;
+  align-items: center;
+  width: 100%;
 }
 
 .visually-hidden {
@@ -18,6 +21,8 @@
 }
 
 select {
+  flex: 1;
+  height: 45px;
   padding: 10px 15px;
   border-radius: 8px;
   border: 1px solid #ddd;
@@ -25,4 +30,14 @@ select {
   cursor: pointer;
   outline-color: #d36a33;
   max-width: 100%;
+}
+
+@media (max-width: 480px) {
+  .filter-group {
+    flex-direction: column;
+  }
+
+  .filter-group select {
+    width: 100%;
+  }
 }

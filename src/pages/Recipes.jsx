@@ -43,16 +43,22 @@ function Recipes() {
       <RecipeHeader />
       <div className={styles["recipes-container"]}>
         <section className={styles["controls-section"]}>
-          <SearchBar
-            searchTerm={filters.searchTerm}
-            setSearchTerm={filters.setSearchTerm}
-          />
-          <RecipeFilters {...filters} categories={categories} />
-          {isAuthenticated && role === "admin" && (
-            <Link to="/recipes/new" className={styles["add-recipe-button"]}>
-              Add new recipe
-            </Link>
-          )}
+          <div>
+            <SearchBar
+              searchTerm={filters.searchTerm}
+              setSearchTerm={filters.setSearchTerm}
+            />
+          </div>
+          <div>
+            <RecipeFilters {...filters} categories={categories} />
+          </div>
+          <div>
+            {isAuthenticated && role === "admin" && (
+              <Link to="/recipes/new" className={styles["add-recipe-button"]}>
+                Add new recipe
+              </Link>
+            )}
+          </div>
         </section>
 
         <div className={styles["recipes-results"]}>
