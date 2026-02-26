@@ -1,14 +1,14 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
-import { validateRegisterForm } from "../utils/registerValidation";
-import { useRegisterForm } from "../hooks/useRegisterForm";
-import { useRegister } from "../hooks/useRegister";
+import { validateRegisterForm } from "../../utils/registerValidation";
+import { useRegisterForm } from "../../hooks/useRegisterForm";
+import { useRegister } from "../../hooks/useRegister";
 
-import FormInput from "../components/forms/FormInput";
-import FormCheckbox from "../components/forms/FormCheckbox";
-import GoBackButton from "../components/common/buttons/GoBackButton";
-import styles from "../styles/pages/auth/AuthShared.module.css";
+import FormInput from "../../components/forms/FormInput";
+import FormCheckbox from "../../components/forms/FormCheckbox";
+import GoBackButton from "../../components/common/buttons/GoBackButton";
+import styles from "../../styles/pages/auth/AuthShared.module.css";
 
 const Register = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -39,7 +39,9 @@ const Register = () => {
 
   return (
     <div className={styles["auth-container"]}>
-      <GoBackButton />
+      <div className={styles["back-button-wrapper"]}>
+        <GoBackButton />
+      </div>
       <div className={styles["auth-paper"]}>
         <h1 className={styles["auth-title"]}>Register</h1>
         <form onSubmit={onSubmit} className={styles["auth-form"]}>
