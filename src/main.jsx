@@ -8,6 +8,7 @@ import { setUser } from "./store/authSlice";
 import { Toaster } from "react-hot-toast";
 import { lazy, Suspense } from "react";
 import { supabase } from "./supabaseClient";
+import Loading from "./components/common/Loading";
 
 const Home = lazy(() => import("./pages/Home"));
 const Recipes = lazy(() => import("./pages/Recipes"));
@@ -101,17 +102,13 @@ export default function App() {
   }, [dispatch]);
 
   if (!authReady) {
-    return <div className="loading-screen">Flavorly is heating up...</div>;
+    return <Loading />;
   }
 
   return (
     <>
       <Toaster />
-      <Suspense
-        fallback={
-          <div className="loading-screen">Flavorly is heating up...</div>
-        }
-      >
+      <Suspense fallback={<Loading />}>
         <Routes>
           <Route element={<Layout />}>
             <Route path="/" element={<Home />} />
@@ -177,7 +174,7 @@ export default function App() {
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <Provider store={store}>
-      <PersistGate loading={null} persistor={persistor}>
+      <PersistGate loading={<Loading />} persistor={persistor}>
         <BrowserRouter>
           <App />
         </BrowserRouter>

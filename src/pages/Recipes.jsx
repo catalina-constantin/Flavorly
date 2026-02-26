@@ -9,6 +9,7 @@ import Pagination from "../components/common/Pagination";
 import RecipeHeader from "../components/recipes/RecipeHeader";
 import { useFilteredRecipes } from "../hooks/useFilteredRecipes";
 import FloatingActionButton from "../components/common/buttons/FloatingActionButton";
+import Loading from "../components/common/Loading";
 import styles from "../styles/pages/Recipes.module.css";
 
 function Recipes() {
@@ -29,8 +30,7 @@ function Recipes() {
     [recipes],
   );
 
-  if (loading)
-    return <div className={styles["status-message"]}>Loading recipes...</div>;
+  if (loading) return <Loading message="Loading recipes..." />;
   if (error)
     return (
       <div className={`${styles["status-message"]} ${styles["error"]}`}>
