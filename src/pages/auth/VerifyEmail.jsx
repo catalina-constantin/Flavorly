@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { clearAuthTempData } from "../../store/authSlice";
 import { useVerifyEmail } from "../../hooks/useVerifyEmail";
-import styles from "../../styles/pages/VerifyEmail.module.css";
+import styles from "../../styles/pages/auth/VerifyEmail.module.css";
 
 const VerifyEmail = () => {
   const { loading, user, pendingEmail, handleResend } = useVerifyEmail();

@@ -52,13 +52,13 @@ function Recipes() {
           <div>
             <RecipeFilters {...filters} categories={categories} />
           </div>
-          <div>
-            {isAuthenticated && role === "admin" && (
+          {isAuthenticated && role === "admin" && (
+            <div>
               <Link to="/recipes/new" className={styles["add-recipe-button"]}>
                 Add new recipe
               </Link>
-            )}
-          </div>
+            </div>
+          )}
         </section>
 
         <div className={styles["recipes-results"]}>
