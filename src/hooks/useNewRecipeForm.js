@@ -35,7 +35,21 @@ export const useNewRecipeForm = () => {
     },
   );
 
-  const [categories, setCategories] = useState([]);
+  const [categories, setCategories] = useState(() => {
+    try {
+      const cached = localStorage.getItem("categories_cache");
+      const cachedTime = localStorage.getItem("categories_cache_time");
+      if (cached && cachedTime) {
+        const now = Date.now();
+        if (now - parseInt(cachedTime, 10) < 5 * 60 * 1000) {
+          return JSON.parse(cached);
+        }
+      }
+      return [];
+    } catch {
+      return [];
+    }
+  });
   const [ingredients, setIngredients] = useState([]);
   const [selectedCategories, setSelectedCategories] = useState(
     storedData?.selectedCategories || [],
@@ -59,11 +73,49 @@ export const useNewRecipeForm = () => {
   }, [formData, selectedCategories, recipeIngredients]);
 
   useEffect(() => {
-    fetchCategories();
-    fetchIngredients();
+    const fetchAll = async () => {
+      setLoading(true);
+      await Promise.all([fetchCategories(), fetchIngredients()]);
+      setLoading(false);
+    };
+    fetchAll();
   }, []);
 
+  const fetchIngredients = async () => {
+    try {
+      const { data, error } = await supabase
+        .from("ingredients")
+        .select("id, name")
+        .order("name");
+      if (!error && data) {
+        setIngredients(data);
+        return data;
+      }
+      if (error) {
+        console.error("Error fetching ingredients:", error);
+      }
+    } catch (error) {
+      console.error("Error fetching ingredients:", error);
+    }
+    return null;
+  };
+
   const fetchCategories = async () => {
+    let useCache = false;
+    try {
+      const cached = localStorage.getItem("categories_cache");
+      const cachedTime = localStorage.getItem("categories_cache_time");
+      if (cached && cachedTime) {
+        const now = Date.now();
+        if (now - parseInt(cachedTime, 10) < 5 * 60 * 1000) {
+          setCategories(JSON.parse(cached));
+          useCache = true;
+        }
+      }
+    } catch {
+      // If there's an error reading cache, just fetch fresh data
+    }
+
     const { data, error } = await supabase
       .from("categories")
       .select("id, name")
@@ -71,45 +123,20 @@ export const useNewRecipeForm = () => {
 
     if (!error && data) {
       setCategories(data);
+      try {
+        localStorage.setItem("categories_cache", JSON.stringify(data));
+        localStorage.setItem("categories_cache_time", Date.now().toString());
+      } catch {
+        // If there's an error writing to cache, ignore it
+      }
       return data;
     }
 
-    if (error) {
+    if (!useCache && error) {
       console.error("Error fetching categories:", error);
     }
 
     return null;
-  };
-
-  const fetchIngredients = async () => {
-    const { data, error } = await supabase
-      .from("ingredients")
-      .select("id, name")
-      .order("name");
-
-    if (!error && data) {
-      setIngredients(data);
-      return data;
-    }
-
-    if (error) {
-      console.error("Error fetching ingredients:", error);
-    }
-
-    return null;
-  };
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
-  };
-
-  const toggleCategory = (categoryId) => {
-    setSelectedCategories((prev) =>
-      prev.includes(categoryId)
-        ? prev.filter((id) => id !== categoryId)
-        : [...prev, categoryId],
-    );
   };
 
   const addNewCategory = async () => {
@@ -324,6 +351,11 @@ export const useNewRecipeForm = () => {
     }
   };
 
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
+
   return {
     formData,
     categories,
@@ -336,7 +368,6 @@ export const useNewRecipeForm = () => {
     showNewIngredient,
     loading,
     handleChange,
-    toggleCategory,
     setShowNewCategory,
     setNewCategoryName,
     addNewCategory,
