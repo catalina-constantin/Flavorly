@@ -61,6 +61,18 @@
   gap: 25px;
 }
 
+.header-content {
+  position: relative;
+  z-index: 3;
+  width: 90%;
+  max-width: 600px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 0 20px;
+}
+
 .recipes-header h1,
 .recipes-header p {
   text-shadow: none;
@@ -73,6 +85,7 @@
   font-weight: 800;
   color: #222;
   font-family: "Playfair Display", serif;
+  font-size: clamp(1.8rem, 5vw, 2.8rem);
 }
 
 .recipes-header p {
@@ -82,16 +95,18 @@
   text-shadow: none;
   font-size: 1.3rem;
   line-height: 1.6;
+  max-width: 600px;
+  font-size: clamp(1rem, 2vw, 1.2rem);
 }
 
-@media (max-width: 1200px) {
-  .header-content {
-    width: 40vw;
+@media (max-width: 768px) {
+  .recipes-header {
+    height: auto;
+    padding: 60px 0;
   }
-}
 
-@media (max-width: 550px) {
   .header-content {
-    width: 60vw;
+    width: 80%;
+    gap: 15px;
   }
 }
