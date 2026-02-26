@@ -1,0 +1,93 @@
+.right-side {
+  width: 65%;
+}
+
+.topic-text {
+  font-size: 28px;
+  font-weight: 700;
+  color: #444;
+  margin-bottom: 15px;
+  font-family: "Playfair Display", serif;
+}
+
+.right-side p {
+  color: #666;
+  line-height: 1.8;
+  margin-bottom: 25px;
+}
+
+.input-box {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.input-box input,
+.input-box textarea {
+  width: 100%;
+  outline: none;
+  border: 1px solid #f0f0f0;
+  border-radius: 8px;
+  padding: 12px 15px;
+  font-size: 14px;
+  background: #fafafa;
+  transition: all 0.3s ease;
+  font-family: sans-serif;
+}
+
+.input-box input::placeholder,
+.input-box textarea::placeholder {
+  color: #888;
+  font-size: 14px;
+  font-family: sans-serif;
+  opacity: 1;
+  letter-spacing: 0.01em;
+}
+
+.input-box input:focus,
+.input-box textarea:focus {
+  border-color: #d96f32;
+  background: #fff;
+  box-shadow: 0 4px 12px rgba(217, 111, 50, 0.2);
+}
+
+.message-box {
+  min-height: 110px;
+}
+.message-box textarea {
+  height: 110px;
+  resize: none;
+}
+
+.button button {
+  color: #fff;
+  padding: 12px 30px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  border: none;
+  transition: all 0.3s ease;
+}
+
+.button button.active {
+  background: #c75d2c;
+}
+.button button.active:hover {
+  background: #d96f32;
+  transform: translateY(-2px);
+}
+.button button.disabled {
+  background: #d0d0d0;
+  cursor: not-allowed;
+}
+
+@media (max-width: 925px) {
+  .right-side {
+    width: 100%;
+  }
+}
+@media (max-width: 640px) {
+  .button,
+  .button button {
+    width: 100%;
+  }
+}

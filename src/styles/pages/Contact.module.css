@@ -15,171 +15,6 @@
   gap: 60px;
 }
 
-.left-side {
-  width: 30%;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  position: relative;
-  gap: 20px;
-  padding: 0 50px;
-}
-
-.left-side::after {
-  content: "";
-  position: absolute;
-  right: -30px;
-  top: 50%;
-  transform: translateY(-50%);
-  height: 80%;
-  width: 1px;
-  background: #e0e0e0;
-}
-
-.contact-image {
-  width: 120px;
-  height: 120px;
-  object-fit: contain;
-  padding: 5px;
-  align-self: center;
-}
-
-.details {
-  margin: 25px 0;
-  text-align: left;
-  font-style: normal;
-}
-
-.details i {
-  font-size: 30px;
-  color: #d96f32;
-  margin-bottom: 12px;
-}
-
-.topic {
-  font-size: 20px;
-  font-weight: 600;
-  color: #333;
-  margin-bottom: 5px;
-}
-
-.text-one,
-.text-two {
-  font-size: 15px;
-  color: #666;
-}
-
-.right-side {
-  width: 65%;
-}
-
-.topic-text {
-  font-size: 28px;
-  font-weight: 700;
-  color: #444;
-  margin-bottom: 15px;
-  font-family: "Playfair Display", serif;
-}
-
-.details .topic {
-  text-transform: uppercase;
-  font-size: 12px;
-  letter-spacing: 1.5px;
-  color: #999;
-  margin-bottom: 10px;
-}
-
-.right-side p {
-  color: #666;
-  line-height: 1.8;
-  margin-bottom: 25px;
-}
-
-.input-box {
-  height: 50px;
-  width: 100%;
-  margin-bottom: 20px;
-}
-
-.input-box input,
-.input-box textarea {
-  height: 100%;
-  width: 100%;
-  outline: none;
-  border: 1px solid #f0f0f0;
-  border-radius: 8px;
-  padding: 12px 15px;
-  font-size: 16px;
-  font-family:
-    -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  background: #fafafa;
-  transition: all 0.3s ease;
-}
-
-.input-box input:focus,
-.input-box textarea:focus {
-  border-color: #d96f32;
-  background: #fff;
-  box-shadow: 0 4px 12px rgba(217, 111, 50, 0.2);
-}
-
-input:-webkit-autofill,
-input:-webkit-autofill:hover,
-input:-webkit-autofill:focus,
-textarea:-webkit-autofill,
-textarea:-webkit-autofill:hover,
-textarea:-webkit-autofill:focus {
-  -webkit-text-fill-color: #333 !important;
-  box-shadow: 0 0 0px 1000px #f9f9f9 inset !important;
-  -webkit-box-shadow: 0 0 0px 1000px #f9f9f9 inset !important;
-  transition: background-color 5000s ease-in-out 0s;
-}
-
-.message-box {
-  min-height: 110px;
-}
-
-.message-box textarea {
-  padding-top: 15px;
-  resize: none;
-}
-
-.button {
-  display: inline-block;
-  margin-top: 10px;
-}
-
-.button button {
-  color: #fff;
-  font-size: 18px;
-  outline: none;
-  border: none;
-  padding: 12px 30px;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  font-weight: 600;
-}
-
-.button button.active {
-  background: #c75d2c;
-}
-
-.button button.active:hover {
-  background: #d96f32;
-  transform: translateY(-2px);
-}
-
-.button button.disabled {
-  background: #d0d0d0;
-  cursor: not-allowed;
-}
-
-.button button.disabled:hover {
-  background: #d0d0d0;
-  transform: none;
-}
-
 .visually-hidden {
   position: absolute;
   width: 1px;
@@ -192,85 +27,20 @@ textarea:-webkit-autofill:focus {
 }
 
 @media (max-width: 925px) {
-  .contact-background {
-    padding: 30px 16px;
-  }
-
   .contact-container {
     padding: 30px;
   }
-
   .content {
     flex-direction: column;
     gap: 40px;
   }
-
-  .left-side,
-  .right-side {
-    width: 100%;
-  }
-
-  .left-side::after {
-    display: none;
-  }
-
-  .left-side {
-    flex-direction: row;
-    justify-content: space-around;
-    align-items: center;
-    text-align: center;
-  }
-
-  .contact-image {
-    margin: 0;
-    width: 100px;
-    height: 100px;
-  }
 }
 
 @media (max-width: 640px) {
-  .contact-background {
-    padding: 0;
-  }
-
   .contact-container {
     padding: 40px;
     width: 100%;
     border-radius: 0;
     margin: 0;
-  }
-
-  .left-side {
-    flex-direction: column;
-    gap: 20px;
-  }
-
-  .contact-image {
-    width: 80px;
-    height: 80px;
-    margin-bottom: 10px;
-  }
-
-  .details {
-    margin: 10px 0;
-    text-align: center;
-  }
-
-  .topic-text {
-    font-size: 24px;
-    text-align: left;
-  }
-
-  .right-side p {
-    text-align: left;
-    font-size: 14px;
-  }
-
-  .button {
-    width: 100%;
-  }
-
-  .button button {
-    width: 100%;
   }
 }
