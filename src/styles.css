@@ -38,3 +38,20 @@ html {
   justify-content: center;
   align-items: center;
 }
+
+.content-wrap.contact-background {
+  background-image: url("https://www.transparenttextures.com/patterns/black-thread-light.png");
+  padding: 50px 16px;
+}
+
+@media (max-width: 925px) {
+  .content-wrap.contact-background {
+    padding: 30px 16px;
+  }
+}
+
+@media (max-width: 640px) {
+  .content-wrap.contact-background {
+    padding: 0;
+  }
+}
