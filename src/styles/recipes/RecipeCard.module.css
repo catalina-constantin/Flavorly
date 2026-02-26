@@ -19,7 +19,6 @@
   box-shadow:
     0 14px 28px rgba(211, 106, 51, 0.15),
     0 10px 10px rgba(0, 0, 0, 0.05);
-  border-color: #d36a33;
 }
 
 .recipe-card.delete-mode {
