@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import toast from "react-hot-toast";
 import { updatePassword } from "../services/authService";
+import { showSuccessToast, showErrorToast } from "../utils/toastHelpers";
 
 export const useResetPassword = () => {
   const [loading, setLoading] = useState(false);
@@ -12,17 +12,11 @@ export const useResetPassword = () => {
     try {
       await updatePassword(newPassword);
 
-      toast.success("Password updated successfully! You can now log in.", {
-        style: { border: "1px solid #4C763B", padding: "16px" },
-        iconTheme: { primary: "#4C763B", secondary: "#FFFAEE" },
-      });
+      showSuccessToast("Password updated successfully! You can now log in.");
 
       navigate("/login");
     } catch (err) {
-      toast.error(err.message || "Failed to update password.", {
-        style: { border: "1px solid #C75D2C", padding: "16px" },
-        iconTheme: { primary: "#C75D2C", secondary: "#FFFAEE" },
-      });
+      showErrorToast(err.message || "Failed to update password.");
     } finally {
       setLoading(false);
     }

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useLogin } from "../../hooks/useLogin";
-import toast from "react-hot-toast";
+import { showErrorToast } from "../../utils/toastHelpers";
 import FormInput from "../../components/forms/FormInput";
 import GoBackButton from "../../components/common/buttons/GoBackButton";
 import styles from "../..//styles/pages/auth/AuthShared.module.css";
@@ -16,7 +16,7 @@ function Login() {
   const onSubmit = (e) => {
     e.preventDefault();
     if (!email || !password) {
-      return toast.error("Please fill in all fields.");
+      return showErrorToast("Please fill in all fields.");
     }
     handleLogin(email, password);
   };

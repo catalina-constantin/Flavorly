@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import toast from "react-hot-toast";
+import { showSuccessToast, showErrorToast } from "../../utils/toastHelpers";
 import { sendPasswordReset } from "../../services/authService";
 import FormInput from "../../components/forms/FormInput";
 import GoBackButton from "../../components/common/buttons/GoBackButton";
@@ -12,20 +12,14 @@ const ForgotPassword = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!email) return toast.error("Please enter your email address.");
+    if (!email) return showErrorToast("Please enter your email address.");
 
     setLoading(true);
     try {
       await sendPasswordReset(email);
-      toast.success("Password reset link sent! Check your inbox.", {
-        style: { border: "1px solid #4C763B", padding: "16px" },
-        iconTheme: { primary: "#4C763B", secondary: "#FFFAEE" },
-      });
+      showSuccessToast("Password reset link sent! Check your inbox.");
     } catch (err) {
-      toast.error(err.message || "Failed to send reset link.", {
-        style: { border: "1px solid #C75D2C", padding: "16px" },
-        iconTheme: { primary: "#C75D2C", secondary: "#FFFAEE" },
-      });
+      showErrorToast(err.message || "Failed to send reset link.");
     } finally {
       setLoading(false);
     }

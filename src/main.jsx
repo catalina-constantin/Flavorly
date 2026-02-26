@@ -5,10 +5,10 @@ import { Provider, useDispatch, useSelector } from "react-redux";
 import { PersistGate } from "redux-persist/integration/react";
 import { store, persistor } from "./store/store";
 import { setUser } from "./store/authSlice";
-import { Toaster } from "react-hot-toast";
 import { lazy, Suspense } from "react";
 import { supabase } from "./supabaseClient";
 import Loading from "./components/common/Loading";
+import AppToaster from "./components/common/AppToaster";
 
 const Home = lazy(() => import("./pages/Home"));
 const Recipes = lazy(() => import("./pages/Recipes"));
@@ -107,7 +107,7 @@ export default function App() {
 
   return (
     <>
-      <Toaster />
+      <AppToaster />
       <Suspense fallback={<Loading />}>
         <Routes>
           <Route element={<Layout />}>
