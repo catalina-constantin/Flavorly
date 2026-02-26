@@ -15,6 +15,7 @@ const Recipes = lazy(() => import("./pages/Recipes"));
 const NewRecipe = lazy(() => import("./pages/NewRecipe"));
 const RecipeDetails = lazy(() => import("./pages/RecipeDetails"));
 const Contact = lazy(() => import("./pages/Contact"));
+const Inbox = lazy(() => import("./pages/Inbox"));
 const Login = lazy(() => import("./pages/auth/Login"));
 const Register = lazy(() => import("./pages/auth/Register"));
 const VerifyEmail = lazy(() => import("./pages/auth/VerifyEmail"));
@@ -123,6 +124,14 @@ export default function App() {
             />
             <Route path="/recipes/:id" element={<RecipeDetails />} />
             <Route path="/contact" element={<Contact />} />
+            <Route
+              path="/inbox"
+              element={
+                <RequireAdmin>
+                  <Inbox />
+                </RequireAdmin>
+              }
+            />
           </Route>
           <Route
             path="/login"
