@@ -12,7 +12,7 @@ function Navbar() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const { isAuthenticated, user } = useSelector((state) => state.auth);
+  const { isAuthenticated, user, role } = useSelector((state) => state.auth);
 
   useEffect(() => {
     document.body.style.overflow = isOpen ? "hidden" : "unset";
@@ -87,6 +87,19 @@ function Navbar() {
                 Contact
               </NavLink>
             </li>
+            {role === "admin" && (
+              <li>
+                <NavLink
+                  to="/inbox"
+                  className={({ isActive }) =>
+                    `${styles["nav-item"]}${isActive ? ` ${styles["active"]}` : ""}`
+                  }
+                  onClick={closeMenu}
+                >
+                  Inbox
+                </NavLink>
+              </li>
+            )}
           </ul>
 
           <div className={styles["nav-actions"]}>
