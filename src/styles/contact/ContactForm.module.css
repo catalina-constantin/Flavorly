@@ -5,13 +5,13 @@
 .topic-text {
   font-size: 28px;
   font-weight: 700;
-  color: #444;
+  color: #333;
   margin-bottom: 15px;
   font-family: "Playfair Display", serif;
 }
 
 .right-side p {
-  color: #666;
+  color: #444;
   line-height: 1.8;
   margin-bottom: 25px;
 }

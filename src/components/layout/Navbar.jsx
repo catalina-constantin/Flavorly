@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { logout } from "../../store/authSlice";
+import { supabase } from "../../supabaseClient";
 import Logo from "../common/Logo";
 import AuthActions from "../common/AuthActions";
 import styles from "../../styles/layout/Navbar.module.css";
@@ -20,7 +21,8 @@ function Navbar() {
   const toggleMenu = () => setIsOpen(!isOpen);
   const closeMenu = () => setIsOpen(false);
 
-  const handleLogout = () => {
+  const handleLogout = async () => {
+    await supabase.auth.signOut();
     dispatch(logout());
     closeMenu();
     navigate("/login");
