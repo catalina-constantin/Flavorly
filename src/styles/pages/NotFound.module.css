@@ -13,19 +13,6 @@
   box-sizing: border-box;
 }
 
-.milk-404 {
-  flex: 1;
-  width: min(520px, 45vw);
-  max-height: 78vh;
-  max-width: 520px;
-  margin: 12px 0;
-  filter: drop-shadow(0px 20px 30px rgba(0, 0, 0, 0.1));
-}
-
-#mouth-frown {
-  opacity: 0;
-}
-
 .text-container {
   flex: 1;
   max-width: 520px;
@@ -64,6 +51,7 @@
   margin-top: 20px;
   cursor: pointer;
   transition: all 0.3s ease;
+  width: fit-content;
 }
 
 .home-button:hover {
@@ -78,11 +66,8 @@
     text-align: left;
     padding: 40px 20px;
     gap: 30px;
-  }
-
-  .milk-404 {
-    width: min(560px, 70vw);
-    max-height: 72vh;
+    height: auto;
+    min-height: 100vh;
   }
 
   .text-container h1 {
