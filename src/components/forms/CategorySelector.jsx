@@ -11,21 +11,32 @@ function CategorySelector({
   newName,
   setNewName,
   onAdd,
+  loading,
 }) {
   return (
     <div className={styles["form-group"]}>
       <label>Categories * (select at least one)</label>
       <div className={styles["category-grid"]}>
-        {categories.map((cat) => (
-          <label key={cat.id} className={styles["checkbox-label"]}>
-            <input
-              type="checkbox"
-              checked={selectedCategories.includes(cat.id)}
-              onChange={() => onToggle(cat.id)}
-            />
-            <span>{cat.name}</span>
-          </label>
-        ))}
+        {loading ? (
+          <span style={{ color: "#888", fontStyle: "italic" }}>
+            Loading categories...
+          </span>
+        ) : categories.length === 0 ? (
+          <span style={{ color: "#888", fontStyle: "italic" }}>
+            No categories found.
+          </span>
+        ) : (
+          categories.map((cat) => (
+            <label key={cat.id} className={styles["checkbox-label"]}>
+              <input
+                type="checkbox"
+                checked={selectedCategories.includes(cat.id)}
+                onChange={() => onToggle(cat.id)}
+              />
+              <span>{cat.name}</span>
+            </label>
+          ))
+        )}
       </div>
       {!showNew ? (
         <button

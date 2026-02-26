@@ -63,6 +63,7 @@ function NewRecipe() {
             setNewName={setNewCategoryName}
             onAdd={addNewCategory}
             onKeyDown={handleCategoryKeyDown}
+            loading={loading}
           />
 
           <IngredientForm
