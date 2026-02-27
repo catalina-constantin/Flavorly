@@ -8,20 +8,20 @@ A modern recipe management web application built with React, Vite, Redux Toolkit
 
 - Browse, search, and filter recipes
 
-  ![Recipe page](docs/recipes-page.png)
+![Recipe page](docs/recipes-page.png)
 
 - See details about each recipe
 
-  ![Recipe details](docs/recipe-details.png)
+![Recipe details](docs/recipe-details.png)
 
 - Add and delete recipes (admin only)
 
-  ![Add recipe](docs/add-recipe.png)
+![Add recipe](docs/add-recipe.png)
 
 - User authentication (register, login, email verification)
 - Admin inbox for contact messages
 
-  ![Admin inbox](docs/admin-inbox.png)
+![Admin inbox](docs/admin-inbox.png)
 
 - Responsive design and accessibility
 - Toast notifications for feedback
