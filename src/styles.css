@@ -1,3 +1,8 @@
+:root {
+  --pattern-bg: url("https://www.transparenttextures.com/patterns/black-thread-light.png");
+  --third-color: #fffaf5;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -11,7 +16,7 @@ body {
 }
 
 html {
-  background-color: #fffaf5;
+  background-color: var(--third-color);
   overscroll-behavior: none;
   font-family: sans-serif;
 }
@@ -39,7 +44,7 @@ html {
 }
 
 .content-wrap.contact-background {
-  background-image: url("https://www.transparenttextures.com/patterns/black-thread-light.png");
+  background-image: var(--pattern-bg);
   padding: 50px 16px;
   justify-content: center;
 }

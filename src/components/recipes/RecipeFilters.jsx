@@ -1,13 +1,13 @@
 import React from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { setFilter, setSort } from "../../store/uiSlice";
 import styles from "../../styles/recipes/RecipeFilters.module.css";
 
-const RecipeFilters = ({
-  selectedCategory,
-  setSelectedCategory,
-  sortBy,
-  setSortBy,
-  categories,
-}) => {
+const RecipeFilters = ({ categories }) => {
+  const selectedCategory = useSelector((state) => state.ui.filterCategory);
+  const sortBy = useSelector((state) => state.ui.sortBy);
+  const dispatch = useDispatch();
+
   return (
     <div className={styles["filter-group"]}>
       <label htmlFor="category-filter" className={styles["visually-hidden"]}>
@@ -17,7 +17,7 @@ const RecipeFilters = ({
         id="category-filter"
         name="category-filter"
         value={selectedCategory}
-        onChange={(e) => setSelectedCategory(e.target.value)}
+        onChange={(e) => dispatch(setFilter(e.target.value))}
       >
         {categories.map((cat) => (
           <option key={cat} value={cat}>
@@ -33,7 +33,7 @@ const RecipeFilters = ({
         id="sort-by"
         name="sort-by"
         value={sortBy}
-        onChange={(e) => setSortBy(e.target.value)}
+        onChange={(e) => dispatch(setSort(e.target.value))}
       >
         <option value="newest">Newest First</option>
         <option value="time-asc">Cooking Time (Low to High)</option>

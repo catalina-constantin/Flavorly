@@ -1,13 +1,10 @@
 import React from "react";
 import { SiFacebook, SiInstagram, SiX } from "react-icons/si";
+import SocialIconButton from "../common/buttons/SocialIconButton";
 import styles from "../../styles/layout/Footer.module.css";
 
 function Footer() {
   const currentYear = new Date().getFullYear();
-
-  const handleSocialClick = (url) => {
-    window.open(url, "_blank", "noopener,noreferrer");
-  };
 
   return (
     <footer className={styles["footer-container"]}>
@@ -15,29 +12,27 @@ function Footer() {
         Copyright &copy; {currentYear} - All Rights Reserved
       </p>
       <div className={styles["social-icons"]}>
-        <button
+        <SocialIconButton
+          url="https://facebook.com"
+          ariaLabel="Visit our Facebook page"
           className={styles["social-button"]}
-          onClick={() => handleSocialClick("https://facebook.com")}
-          aria-label="Visit our Facebook page"
         >
           <SiFacebook size={20} />
-        </button>
-
-        <button
+        </SocialIconButton>
+        <SocialIconButton
+          url="https://instagram.com"
+          ariaLabel="Visit our Instagram page"
           className={styles["social-button"]}
-          onClick={() => handleSocialClick("https://instagram.com")}
-          aria-label="Visit our Instagram page"
         >
           <SiInstagram size={20} />
-        </button>
-
-        <button
+        </SocialIconButton>
+        <SocialIconButton
+          url="https://x.com"
+          ariaLabel="Visit our X page"
           className={styles["social-button"]}
-          onClick={() => handleSocialClick("https://x.com")}
-          aria-label="Visit our X page"
         >
           <SiX size={20} />
-        </button>
+        </SocialIconButton>
       </div>
     </footer>
   );

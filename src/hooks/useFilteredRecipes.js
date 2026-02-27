@@ -1,5 +1,7 @@
 import { useState, useMemo, useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { setPage } from "../store/uiSlice";
 
 const STORAGE_KEY = "recipe_filters";
 
@@ -40,10 +42,8 @@ export function useFilteredRecipes(recipes, recipesPerPage = 12) {
   const [sortBy, setSortBy] = useState(
     () => searchParams.get("order") || storedFilters?.sortBy || "newest",
   );
-  const [currentPage, setCurrentPage] = useState(() => {
-    const nextPage = Number(searchParams.get("page") || 1);
-    return Number.isFinite(nextPage) && nextPage > 0 ? nextPage : 1;
-  });
+  const dispatch = useDispatch();
+  const currentPage = useSelector((state) => state.ui.currentPage);
 
   useEffect(() => {
     setLocalSearchTerm(displaySearchTerm);
@@ -135,7 +135,11 @@ export function useFilteredRecipes(recipes, recipesPerPage = 12) {
       sortBy,
       setSortBy,
     },
-    pagination: { currentPage: validCurrentPage, setCurrentPage, totalPages },
+    pagination: {
+      currentPage,
+      setPage: (page) => dispatch(setPage(page)),
+      totalPages,
+    },
     currentRecipes,
   };
 }

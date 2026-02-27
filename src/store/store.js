@@ -35,7 +35,7 @@ const itemsTransform = createTransform(
 const persistConfig = {
   key: "root",
   storage,
-  whitelist: ["items"],
+  whitelist: ["items", "auth"],
   transforms: [itemsTransform],
 };
 

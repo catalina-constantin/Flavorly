@@ -1,9 +1,14 @@
 import React from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { setPage } from "../../store/uiSlice";
 import styles from "../../styles/common/Pagination.module.css";
 
-function Pagination({ currentPage, totalPages, onPageChange }) {
+function Pagination({ totalPages }) {
+  const currentPage = useSelector((state) => state.ui.currentPage);
+  const dispatch = useDispatch();
+
   const handlePageChange = (page) => {
-    onPageChange(page);
+    dispatch(setPage(page));
     setTimeout(() => {
       window.scrollTo({ top: 0, behavior: "smooth" });
     }, 100);

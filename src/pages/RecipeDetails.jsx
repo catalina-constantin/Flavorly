@@ -5,7 +5,6 @@ import { fetchRecipeDetails } from "../store/itemsSlice";
 import RecipeDetailsHeader from "../components/recipes/recipe-details/RecipeDetailsHeader";
 import IngredientList from "../components/recipes/recipe-form/IngredientList";
 import InstructionSteps from "../components/recipes/recipe-details/InstructionSteps";
-import Loading from "../components/common/Loading";
 import styles from "../styles/pages/RecipeDetails.module.css";
 
 function RecipeDetails() {
@@ -19,7 +18,7 @@ function RecipeDetails() {
   }, [id, dispatch]);
 
   if (status === "loading" && !recipe)
-    return <Loading message="Preparing..." />;
+    return <div className={styles["status-message"]}>Preparing...</div>;
   if (status === "failed" && !recipe)
     return (
       <div className={`${styles["status-message"]} ${styles["error"]}`}>

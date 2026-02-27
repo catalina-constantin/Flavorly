@@ -47,7 +47,7 @@ export const getRecipeById = async (id) => {
     )
     .eq("id", id)
     .single();
-  console.log("Raw data from Supabase:", data);
+
   if (error) throw error;
   const processedData = {
     ...data,
@@ -55,7 +55,6 @@ export const getRecipeById = async (id) => {
       .map((rc) => rc?.categories)
       .filter(validateCategory),
   };
-  console.log("Processed data with categories:", processedData);
   return processedData;
 };
 

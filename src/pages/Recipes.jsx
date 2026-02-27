@@ -50,7 +50,7 @@ function Recipes() {
             />
           </div>
           <div>
-            <RecipeFilters {...filters} categories={categories} />
+            <RecipeFilters categories={categories} />
           </div>
           {isAuthenticated && role === "admin" && (
             <div>
@@ -66,9 +66,9 @@ function Recipes() {
             <>
               <RecipeList recipes={currentRecipes} deleteMode={deleteMode} />
               <Pagination
-                currentPage={pagination.currentPage}
                 totalPages={pagination.totalPages}
-                onPageChange={pagination.setCurrentPage}
+                currentPage={pagination.currentPage}
+                setPage={pagination.setPage}
               />
             </>
           ) : (
