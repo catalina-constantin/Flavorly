@@ -121,6 +121,12 @@ export function useFilteredRecipes(recipes, recipesPerPage = 12) {
   const totalPages = Math.ceil(processedRecipes.length / recipesPerPage);
   const validCurrentPage = currentPage > totalPages ? 1 : currentPage;
 
+  useEffect(() => {
+    if (currentPage > totalPages && totalPages > 0) {
+      dispatch(setPage(totalPages));
+    }
+  }, [currentPage, totalPages, dispatch]);
+
   const currentRecipes = processedRecipes.slice(
     (validCurrentPage - 1) * recipesPerPage,
     validCurrentPage * recipesPerPage,
