@@ -35,7 +35,7 @@
 
 .details i {
   font-size: 30px;
-  color: #d96f32;
+  color: var(--secondary-color);
   margin-bottom: 12px;
 }
 

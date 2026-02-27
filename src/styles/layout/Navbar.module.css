@@ -46,7 +46,7 @@
 
 .nav-item:hover,
 .nav-item.active {
-  color: #c75d2c;
+  color: var(--primary-color);
 }
 
 .nav-item::after {
@@ -56,7 +56,7 @@
   height: 2px;
   bottom: -4px;
   left: 0;
-  background-color: #c75d2c;
+  background-color: var(--primary-color);
   transition: width 0.3s ease;
 }
 

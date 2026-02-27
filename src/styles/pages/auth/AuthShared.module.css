@@ -3,7 +3,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background-image: url("https://www.transparenttextures.com/patterns/black-thread-light.png");
+  background-image: var(--pattern-bg);
   padding: 32px 16px;
   position: relative;
 }
@@ -40,7 +40,7 @@
 }
 
 .auth-button {
-  background-color: #c75d2c;
+  background-color: var(--primary-color);
   border-radius: 12px;
   padding: 12px 16px;
   font-weight: 600;
@@ -54,11 +54,11 @@
 }
 
 .auth-button:hover:not(:disabled) {
-  background-color: #d96f32;
+  background-color: var(--secondary-color);
 }
 
 .auth-button:disabled {
-  background-color: #c75d2c;
+  background-color: var(--primary-color);
   color: #ffffff;
   opacity: 0.7;
   cursor: not-allowed;
@@ -75,7 +75,7 @@
 }
 
 .auth-link {
-  color: #c75d2c;
+  color: var(--primary-color);
   text-decoration: none;
   font-weight: 600;
 }
@@ -97,7 +97,7 @@
 }
 
 .toast-styles {
-  border: 1px solid #c75d2c;
+  border: 1px solid var(--primary-color);
   padding: 16px;
   color: #141414;
   background: #ffffff;

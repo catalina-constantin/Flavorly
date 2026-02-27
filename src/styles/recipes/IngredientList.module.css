@@ -14,7 +14,7 @@
 }
 
 .icon-orange {
-  color: #d36a33;
+  color: var(--secondary-color);
   margin-right: 12px;
 }
 
@@ -32,7 +32,7 @@
 
 .ingredient-qty {
   font-weight: bold;
-  color: #d36a33;
+  color: var(--secondary-color);
 }
 
 .ingredients-header-group {

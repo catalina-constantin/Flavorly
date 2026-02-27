@@ -33,7 +33,7 @@
   margin: 0 auto 20px;
   border-radius: 50%;
   background-color: #fff5f0;
-  color: #a72703;
+  color: var(--error-color);
 }
 
 .modal-title {
@@ -53,7 +53,7 @@
 
 .modal-warning {
   font-size: 0.9rem;
-  color: #a72703;
+  color: var(--error-color);
   font-weight: 500;
   margin-bottom: 24px;
 }
@@ -85,12 +85,12 @@
 }
 
 .modal-button.delete-recipe-button {
-  background-color: #a72703;
+  background-color: var(--error-color);
   color: white;
 }
 
 .modal-button.delete-recipe-button:hover {
-  background-color: #8b1f02;
+  background-color: var(--error-color-dark);
   transform: scale(1.02);
 }
 

@@ -14,7 +14,7 @@
 }
 
 .go-back-button:hover {
-  color: #d36a33;
+  color: var(--secondary-color);
   transition: all 0.2s ease;
 }
 

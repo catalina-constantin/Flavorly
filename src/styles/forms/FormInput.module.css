@@ -34,7 +34,7 @@
 }
 
 .custom-input.input-error {
-  border-color: #ef4444;
+  border-color: var(--error-color);
 }
 
 .visibility-toggle {
@@ -62,5 +62,5 @@
 }
 
 .text-error {
-  color: #ef4444;
+  color: var(--error-color);
 }

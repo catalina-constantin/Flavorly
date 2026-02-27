@@ -84,7 +84,7 @@
   margin-bottom: 10px;
   font-weight: 800;
   color: #222;
-  font-family: "Playfair Display", serif;
+  font-family: var(--primary-font);
   font-size: clamp(1.8rem, 5vw, 2.8rem);
 }
 

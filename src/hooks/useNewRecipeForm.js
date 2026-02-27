@@ -75,8 +75,25 @@ export const useNewRecipeForm = () => {
   useEffect(() => {
     const fetchAll = async () => {
       setLoading(true);
-      await Promise.all([fetchCategories(), fetchIngredients()]);
-      setLoading(false);
+      const cached = localStorage.getItem("categories_cache");
+      const cachedTime = localStorage.getItem("categories_cache_time");
+      const now = Date.now();
+      let categoriesLoaded = false;
+      if (
+        cached &&
+        cachedTime &&
+        now - parseInt(cachedTime, 10) < 5 * 60 * 1000
+      ) {
+        setCategories(JSON.parse(cached));
+        categoriesLoaded = true;
+      } else {
+        const fetched = await fetchCategories();
+        if (fetched && fetched.length > 0) {
+          categoriesLoaded = true;
+        }
+      }
+      await fetchIngredients();
+      setLoading(!categoriesLoaded);
     };
     fetchAll();
   }, []);

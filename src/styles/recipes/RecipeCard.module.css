@@ -38,7 +38,7 @@
   width: 32px;
   height: 32px;
   border-radius: 50%;
-  background-color: #a72703;
+  background-color: var(--error-color);
   color: white;
   border: none;
   display: flex;
@@ -51,7 +51,7 @@
 }
 
 .delete-button:hover {
-  background-color: #8d2508;
+  background-color: var(--error-color-dark);
   transform: scale(1.1);
   box-shadow: 0 4px 12px rgba(220, 53, 69, 0.5);
 }
@@ -86,7 +86,7 @@
 .recipe-category {
   display: inline-block;
   background: #fff5f0;
-  color: #d36a33;
+  color: var(--secondary-color);
   padding: 4px 12px;
   border-radius: 20px;
   font-size: 0.8rem;

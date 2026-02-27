@@ -39,7 +39,7 @@
   justify-content: center;
   padding: 12px 18px;
   border-radius: 10px;
-  background: #c75d2c;
+  background: var(--primary-color);
   color: #fff;
   font-weight: 600;
   letter-spacing: 0.01em;
@@ -54,7 +54,7 @@
 }
 
 .add-recipe-button:hover {
-  background: #d96f32;
+  background: var(--secondary-color);
   transform: translateY(-1px);
   box-shadow: 0 12px 24px rgba(217, 111, 50, 0.28);
 }
@@ -69,7 +69,7 @@
   text-align: center;
   padding: 100px;
   font-size: 1.2rem;
-  color: #d36a33;
+  color: var(--secondary-color);
 }
 
 @media (max-width: 1024px) {

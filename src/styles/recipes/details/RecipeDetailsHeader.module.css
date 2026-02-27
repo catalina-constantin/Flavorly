@@ -13,7 +13,7 @@
 .recipe-details-header-content h1 {
   font-size: clamp(1.5rem, 5vw, 3rem);
   margin: 12px 0 16px;
-  font-family: "Playfair Display", serif;
+  font-family: var(--primary-font);
   color: #1f2933;
   line-height: 1.2;
 }

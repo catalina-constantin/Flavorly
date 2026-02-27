@@ -38,7 +38,7 @@
   width: 18px;
   height: 18px;
   cursor: pointer;
-  accent-color: #d96f32;
+  accent-color: var(--secondary-color);
 }
 
 .checkbox-label span {
@@ -51,9 +51,9 @@
   align-items: center;
   gap: 6px;
   padding: 10px 16px;
-  border: 1px dashed #d96f32;
+  border: 1px dashed var(--secondary-color);
   background: transparent;
-  color: #d96f32;
+  color: var(--secondary-color);
   border-radius: 8px;
   font-size: 0.9rem;
   font-weight: 600;
@@ -64,7 +64,7 @@
 
 .add-new-button:hover {
   background: #fff5f0;
-  border-color: #c75d2c;
+  border-color: var(--primary-color);
 }
 
 .inline-add {
@@ -89,7 +89,7 @@
 
 .inline-add input:focus {
   outline: none;
-  border-color: #d96f32;
+  border-color: var(--secondary-color);
   box-shadow: 0 0 0 3px rgba(217, 111, 50, 0.1);
 }
 
@@ -108,14 +108,14 @@
 }
 
 .inline-add .save-btn {
-  background: #d96f32;
+  background: var(--secondary-color);
   color: #fff;
   border: 2px solid transparent;
   box-shadow: 0 2px 6px rgba(217, 111, 50, 0.3);
 }
 
 .inline-add .save-btn:hover {
-  background: #c75d2c;
+  background: var(--primary-color);
   transform: translateY(-1px);
   box-shadow: 0 4px 8px rgba(217, 111, 50, 0.4);
 }

@@ -5,7 +5,7 @@
   width: 60px;
   height: 60px;
   border-radius: 50%;
-  background-color: #d36a33;
+  background-color: var(--secondary-color);
   color: white;
   border: none;
   display: flex;
@@ -27,12 +27,12 @@
 }
 
 .fab-button.delete-mode {
-  background-color: #a72703;
+  background-color: var(--error-color);
   box-shadow: 0 10px 25px rgba(220, 53, 69, 0.4);
 }
 
 .fab-button.delete-mode:hover {
-  background-color: #8d2508;
+  background-color: var(--error-color-dark);
 }
 
 @media (max-width: 480px) {

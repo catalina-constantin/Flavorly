@@ -45,7 +45,7 @@
 
 .input-box input:focus,
 .input-box textarea:focus {
-  border-color: #d96f32;
+  border-color: var(--secondary-color);
   background: #fff;
   box-shadow: 0 4px 12px rgba(217, 111, 50, 0.2);
 }
@@ -69,10 +69,10 @@
 }
 
 .button button.active {
-  background: #c75d2c;
+  background: var(--primary-color);
 }
 .button button.active:hover {
-  background: #d96f32;
+  background: var(--secondary-color);
   transform: translateY(-2px);
 }
 .button button.disabled {

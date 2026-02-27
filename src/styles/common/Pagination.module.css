@@ -8,7 +8,7 @@
 }
 
 .pagination-btn {
-  background: #d36a33;
+  background: var(--secondary-color);
   color: white;
   border: none;
   padding: 8px 16px;

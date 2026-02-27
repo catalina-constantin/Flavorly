@@ -7,7 +7,7 @@
 }
 
 .recipe-details-category-badge {
-  background: #d36a33;
+  background: var(--secondary-color);
   color: #fff;
   padding: 8px 12px;
   border-radius: 20px;

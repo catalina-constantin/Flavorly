@@ -9,7 +9,7 @@
 }
 
 .inbox-header h1 {
-  font-family: "Playfair Display", serif;
+  font-family: var(--primary-font);
   font-size: clamp(2rem, 5vw, 3rem);
   color: #222;
   margin-bottom: 10px;
@@ -53,6 +53,7 @@
   font-size: 1.2rem;
   margin: 0;
   color: #333;
+  font-family: var(--secondary-font);
 }
 
 .user-group {
@@ -84,7 +85,7 @@
 
 .email {
   font-size: 0.95rem;
-  color: #d96f32;
+  color: var(--secondary-color);
 }
 
 .avatar {
@@ -92,7 +93,7 @@
   width: 50px;
   height: 50px;
   background: #f3e9dc;
-  color: #d96f32;
+  color: var(--secondary-color);
   border-radius: 15px;
   display: flex;
   align-items: center;
@@ -120,12 +121,12 @@
 
 .reply-btn:hover {
   background: #f3e9dc;
-  color: #d96f32;
+  color: var(--secondary-color);
 }
 
 .delete-btn:hover {
   background: #fff0f0;
-  color: #ff4d4d;
+  color: var(--error-color);
 }
 
 .message-content {
@@ -166,7 +167,7 @@
 }
 
 .reply-section textarea:focus {
-  border-color: #d96f32;
+  border-color: var(--secondary-color);
 }
 
 .reply-actions {
@@ -177,7 +178,7 @@
 }
 
 .send-btn {
-  background: #d96f32;
+  background: var(--secondary-color);
   color: white;
   border: none;
   padding: 10px 20px;

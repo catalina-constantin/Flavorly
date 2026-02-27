@@ -22,7 +22,7 @@
   -webkit-appearance: none;
   width: 18px;
   height: 18px;
-  border: 2px solid #c75d2c;
+  border: 2px solid var(--primary-color);
   border-radius: 4px;
   background-color: transparent;
   cursor: pointer;
@@ -35,7 +35,7 @@
 }
 
 .custom-checkbox:checked {
-  background-color: #c75d2c;
+  background-color: var(--primary-color);
 }
 
 .custom-checkbox:checked::after {
@@ -52,7 +52,7 @@
 
 .error-message {
   display: block;
-  color: #d32f2f;
+  color: var(--error-color);
   font-size: 0.75rem;
   margin-left: 30px;
   margin-top: 4px;

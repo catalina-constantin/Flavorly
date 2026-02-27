@@ -1,6 +1,12 @@
 :root {
   --pattern-bg: url("https://www.transparenttextures.com/patterns/black-thread-light.png");
+  --primary-color: #c75d2c;
+  --secondary-color: #d96f32;
   --third-color: #fffaf5;
+  --error-color: #a72703;
+  --error-color-dark: #8d2508;
+  --primary-font: "Playfair Display", serif;
+  --secondary-font: sans-serif;
 }
 
 * {
@@ -18,7 +24,7 @@ body {
 html {
   background-color: var(--third-color);
   overscroll-behavior: none;
-  font-family: sans-serif;
+  font-family: var(--secondary-font);
 }
 
 #root {

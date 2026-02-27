@@ -21,11 +21,11 @@
 }
 
 .btn-login:hover {
-  color: #c75d2c;
+  color: var(--primary-color);
 }
 
 .btn-register {
-  background-color: #c75d2c;
+  background-color: var(--primary-color);
   color: white;
   padding: 0.6rem 1.5rem;
   border-radius: 12px;
@@ -38,12 +38,12 @@
 }
 
 .btn-register:hover {
-  background-color: #d96f32;
+  background-color: var(--secondary-color);
   box-shadow: 0 6px 15px rgba(199, 93, 44, 0.3);
 }
 
 .btn-logout {
-  background-color: #c75d2c;
+  background-color: var(--primary-color);
   color: white;
   padding: 0.6rem 1.5rem;
   border-radius: 12px;
@@ -57,7 +57,7 @@
 }
 
 .btn-logout:hover {
-  background-color: #d96f32;
+  background-color: var(--secondary-color);
   box-shadow: 0 6px 15px rgba(199, 93, 44, 0.3);
   transform: translateY(-1px);
 }

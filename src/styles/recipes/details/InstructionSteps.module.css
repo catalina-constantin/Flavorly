@@ -26,7 +26,7 @@
 
 .step-number {
   background: #fff5f0;
-  color: #d36a33;
+  color: var(--secondary-color);
   width: 35px;
   height: 35px;
   min-width: 35px;

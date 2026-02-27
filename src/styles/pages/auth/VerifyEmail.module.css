@@ -3,9 +3,9 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #f3e9dc;
   padding: 32px 16px;
-  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+  background-color: var(--third-color);
+  background-image: var(--pattern-bg);
 }
 
 .verify-email-paper {
@@ -36,7 +36,7 @@
 }
 
 .verify-email-description strong {
-  color: #c75d2c;
+  color: var(--primary-color);
   word-break: break-all;
 }
 
@@ -53,7 +53,7 @@
 }
 
 .resend-button {
-  background-color: #c75d2c;
+  background-color: var(--primary-color);
   color: #ffffff;
   padding: 12px 16px;
   border-radius: 12px;
@@ -67,7 +67,7 @@
 }
 
 .resend-button:hover:not(:disabled) {
-  background-color: #d96f32;
+  background-color: var(--secondary-color);
 }
 
 .resend-button:disabled {
@@ -85,7 +85,7 @@
 .refresh-link {
   background: none;
   border: none;
-  color: #c75d2c;
+  color: var(--primary-color);
   font-size: 0.9rem;
   font-weight: 600;
   padding: 0 4px;
@@ -97,7 +97,7 @@
 }
 
 .refresh-link:hover:not(:disabled) {
-  color: #b34b1f;
+  color: var(--secondary-color);
   text-decoration: underline;
 }
 

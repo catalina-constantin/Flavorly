@@ -11,12 +11,19 @@ import { useFilteredRecipes } from "../hooks/useFilteredRecipes";
 import FloatingActionButton from "../components/common/buttons/FloatingActionButton";
 import Loading from "../components/common/Loading";
 import styles from "../styles/pages/Recipes.module.css";
+import { showErrorToast } from "../utils/toastHelpers";
 
 function Recipes() {
   const [deleteMode, setDeleteMode] = useState(false);
   const { role, isAuthenticated } = useSelector((state) => state.auth);
   const { recipes, loading, error } = useRecipes();
   const { filters, pagination, currentRecipes } = useFilteredRecipes(recipes);
+
+  React.useEffect(() => {
+    if (error) {
+      showErrorToast(error);
+    }
+  }, [error]);
 
   const categories = useMemo(
     () => [
@@ -31,12 +38,7 @@ function Recipes() {
   );
 
   if (loading) return <Loading message="Loading recipes..." />;
-  if (error)
-    return (
-      <div className={`${styles["status-message"]} ${styles["error"]}`}>
-        Error: {error}
-      </div>
-    );
+  if (error) return null;
 
   return (
     <>
