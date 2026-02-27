@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { supabase } from "../../supabaseClient";
 import { useResetPassword } from "../../hooks/useResetPassword";
 import FormInput from "../../components/forms/FormInput";
 import { validatePasswordFields } from "../../utils/registerValidation";
@@ -11,10 +12,19 @@ const ResetPassword = () => {
   });
   const [showPassword, setShowPassword] = useState(false);
   const [errors, setErrors] = useState({});
+  const [sessionChecked, setSessionChecked] = useState(false);
+  const [hasSession, setHasSession] = useState(false);
 
   const { handleResetPassword, loading } = useResetPassword();
 
   const { password, confirmPassword } = formData;
+
+  useEffect(() => {
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      setHasSession(!!session);
+      setSessionChecked(true);
+    });
+  }, []);
 
   const handleChange = (field) => (e) => {
     setFormData((prev) => ({ ...prev, [field]: e.target.value }));
@@ -38,6 +48,11 @@ const ResetPassword = () => {
   };
 
   const isFormValid = password && confirmPassword;
+
+  if (!sessionChecked) return null; // or a loader
+  if (!hasSession) {
+    return <div>Invalid or expired reset link. Please request a new one.</div>;
+  }
 
   return (
     <div className={styles["auth-container"]}>
@@ -80,16 +95,13 @@ const ResetPassword = () => {
             helperText={errors.confirmPassword}
           />
 
-          <Button
-            variant="contained"
-            fullWidth
-            size="large"
+          <button
             type="submit"
             disabled={loading || !isFormValid}
             className={styles["auth-button"]}
           >
             {loading ? "Updating..." : "Update Password"}
-          </Button>
+          </button>
         </form>
       </div>
     </div>

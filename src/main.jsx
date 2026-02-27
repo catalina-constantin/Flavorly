@@ -149,14 +149,7 @@ export default function App() {
               </RequireGuest>
             }
           />
-          <Route
-            path="/reset-password"
-            element={
-              <RequireGuest>
-                <ResetPassword />
-              </RequireGuest>
-            }
-          />
+          <Route path="/reset-password" element={<ResetPassword />} />
           <Route
             path="/register"
             element={
