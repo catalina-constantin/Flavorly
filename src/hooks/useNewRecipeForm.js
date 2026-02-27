@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { supabase } from "../supabaseClient";
-import { resetRecipesStatus } from "../store/itemsSlice";
+import { resetRecipesStatus, fetchRecipes } from "../store/itemsSlice";
 
 const STORAGE_KEY = "newRecipeFormData";
 
@@ -326,6 +326,7 @@ export const useNewRecipeForm = () => {
       }
 
       dispatch(resetRecipesStatus());
+      await dispatch(fetchRecipes({ forceRefresh: true }));
       clearStoredFormData();
       alert("Recipe created successfully!");
       navigate(`/recipes/${recipe.id}`);
@@ -373,6 +374,14 @@ export const useNewRecipeForm = () => {
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
+  const toggleCategory = (catId) => {
+    setSelectedCategories((prev) =>
+      prev.includes(catId)
+        ? prev.filter((id) => id !== catId)
+        : [...prev, catId],
+    );
+  };
+
   return {
     formData,
     categories,
@@ -385,6 +394,7 @@ export const useNewRecipeForm = () => {
     showNewIngredient,
     loading,
     handleChange,
+    toggleCategory,
     setShowNewCategory,
     setNewCategoryName,
     addNewCategory,
