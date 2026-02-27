@@ -53,22 +53,6 @@ function Login() {
             togglePassword={() => setShowPassword(!showPassword)}
           />
 
-          <div className={styles["auth-options"]}>
-            <span
-              className={styles["auth-footer-text"]}
-              style={{ marginTop: 0 }}
-            >
-              Forgot your password?{" "}
-              <Link
-                to="/forgot-password"
-                className={styles["auth-link"]}
-                style={{ fontSize: "0.875rem" }}
-              >
-                Reset it here
-              </Link>
-            </span>
-          </div>
-
           <button
             type="submit"
             disabled={loading}

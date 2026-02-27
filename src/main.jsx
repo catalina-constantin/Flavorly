@@ -19,8 +19,6 @@ const Inbox = lazy(() => import("./pages/Inbox"));
 const Login = lazy(() => import("./pages/auth/Login"));
 const Register = lazy(() => import("./pages/auth/Register"));
 const VerifyEmail = lazy(() => import("./pages/auth/VerifyEmail"));
-const ForgotPassword = lazy(() => import("./pages/auth/ForgotPassword"));
-const ResetPassword = lazy(() => import("./pages/auth/ResetPassword"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 const Layout = lazy(() => import("./layout/Layout"));
 
@@ -141,15 +139,6 @@ export default function App() {
               </RequireGuest>
             }
           />
-          <Route
-            path="/forgot-password"
-            element={
-              <RequireGuest>
-                <ForgotPassword />
-              </RequireGuest>
-            }
-          />
-          <Route path="/reset-password" element={<ResetPassword />} />
           <Route
             path="/register"
             element={

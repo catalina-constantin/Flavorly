@@ -31,6 +31,7 @@
   margin-bottom: 32px;
   font-weight: 700;
   font-size: 2rem;
+  font-family: var(--primary-font);
 }
 
 .auth-form {
